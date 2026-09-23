@@ -1,0 +1,2002 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Na Risca Studio — Agendamento</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #4a6741;
+    --green-light: #5c7f52;
+    --green-dark: #2e3f2c;
+    --green-pale: #eef2ed;
+    --green-mid: #3a5537;
+    --cream: #f7f5f0;
+    --cream-dark: #ede9e0;
+    --text: #1a1a18;
+    --text-muted: #5a5a56;
+    --text-light: #9a9a94;
+    --white: #ffffff;
+    --border: #d4cfc4;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(247,245,240,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nav-logo .scissors-icon {
+    width: 32px;
+    height: 32px;
+    color: var(--green);
+  }
+
+  .nav-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: var(--green-dark);
+    line-height: 1;
+  }
+
+  .nav-brand span {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 4px;
+    color: var(--green);
+    font-weight: 400;
+    margin-top: 1px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--green); }
+
+  .nav-cta {
+    background: var(--green);
+    color: var(--white) !important;
+    padding: 8px 20px !important;
+    border-radius: 40px;
+    font-weight: 500 !important;
+    transition: background 0.2s !important;
+  }
+
+  .nav-cta:hover { background: var(--green-dark) !important; color: var(--white) !important; }
+
+  /* HERO */
+  .hero {
+    padding: 140px 2rem 80px;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--green-pale);
+    color: var(--green-dark);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 40px;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(74,103,65,0.2);
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--green);
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    line-height: 0.92;
+    letter-spacing: 2px;
+    color: var(--green-dark);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--green);
+    display: block;
+  }
+
+  .hero p {
+    color: var(--text-muted);
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    max-width: 380px;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .btn-primary {
+    background: var(--green);
+    color: var(--white);
+    border: none;
+    padding: 14px 32px;
+    border-radius: 40px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: var(--green-dark); transform: translateY(-1px); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--green-dark);
+    border: 1.5px solid var(--green);
+    padding: 14px 28px;
+    border-radius: 40px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+
+  .btn-outline:hover { background: var(--green-pale); }
+
+  /* HERO CARD */
+  .hero-visual {
+    position: relative;
+  }
+
+  .hours-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    box-shadow: 0 4px 24px rgba(46,63,44,0.08);
+  }
+
+  .hours-card h3 {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-light);
+    font-weight: 500;
+    margin-bottom: 1rem;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .hours-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--cream-dark);
+    font-size: 14px;
+  }
+
+  .hours-row:last-child { border-bottom: none; }
+
+  .day-name {
+    font-weight: 500;
+    color: var(--text);
+    min-width: 80px;
+  }
+
+  .day-hours {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: var(--green-dark);
+    font-weight: 500;
+  }
+
+  .day-closed {
+    color: var(--text-light);
+    font-size: 12px;
+  }
+
+  .status-badge {
+    font-size: 10px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+
+  .status-open {
+    background: var(--green-pale);
+    color: var(--green-dark);
+  }
+
+  .status-closed {
+    background: var(--cream-dark);
+    color: var(--text-light);
+  }
+
+  /* BARBERS SECTION */
+  .section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    letter-spacing: 2px;
+    color: var(--green-dark);
+    margin-bottom: 2.5rem;
+  }
+
+  .barbers-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    gap: 1.5rem;
+  }
+
+  .barber-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem;
+    transition: all 0.25s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .barber-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 4px;
+    height: 0;
+    background: var(--green);
+    border-radius: 0 0 4px 0;
+    transition: height 0.3s;
+  }
+
+  .barber-card:hover::before { height: 100%; }
+  .barber-card:hover { border-color: var(--green); box-shadow: 0 4px 24px rgba(46,63,44,0.1); }
+
+  .barber-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--green-pale);
+    border: 2px solid var(--green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 1px;
+    color: var(--green-dark);
+    margin-bottom: 1rem;
+  }
+
+  .barber-name {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .barber-nick {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--green);
+    letter-spacing: 1px;
+  }
+
+  /* SERVICES */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .service-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .service-card:hover {
+    border-color: var(--green);
+    background: var(--green-pale);
+  }
+
+  .service-card.selected {
+    border-color: var(--green);
+    background: var(--green-pale);
+    box-shadow: 0 0 0 2px var(--green);
+  }
+
+  .service-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+
+  .service-price {
+    font-family: 'DM Mono', monospace;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--green-dark);
+  }
+
+  /* BOOKING SECTION */
+  .booking-wrapper {
+    background: var(--white);
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(46,63,44,0.08);
+  }
+
+  .booking-header {
+    background: var(--green-dark);
+    padding: 2rem 2.5rem;
+    color: var(--white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .booking-header h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 2px;
+  }
+
+  .booking-header p {
+    font-size: 13px;
+    opacity: 0.7;
+    margin-top: 4px;
+  }
+
+  .booking-steps {
+    display: flex;
+    gap: 8px;
+  }
+
+  .step-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    transition: all 0.3s;
+  }
+
+  .step-dot.active { background: var(--white); width: 24px; border-radius: 4px; }
+
+  .booking-body {
+    padding: 2.5rem;
+  }
+
+  /* Step forms */
+  .step-panel { display: none; }
+  .step-panel.active { display: block; }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 1rem;
+  }
+
+  label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    font-family: 'DM Mono', monospace;
+  }
+
+  input, select, textarea {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    padding: 12px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--cream);
+    color: var(--text);
+    transition: border 0.2s;
+    outline: none;
+    width: 100%;
+  }
+
+  input:focus, select:focus { border-color: var(--green); background: var(--white); }
+
+  .barber-select-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    max-width: 360px;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .barber-option {
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .barber-option:hover { border-color: var(--green); background: var(--green-pale); }
+  .barber-option.selected { border-color: var(--green); background: var(--green-pale); box-shadow: 0 0 0 2px var(--green); }
+
+  .barber-option .mini-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--green-pale);
+    border: 2px solid var(--green);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px;
+    color: var(--green-dark);
+    flex-shrink: 0;
+  }
+
+  .barber-option .mini-name { font-size: 14px; font-weight: 500; color: var(--text); }
+  .barber-option .mini-nick { font-size: 11px; color: var(--green); font-family: 'DM Mono', monospace; }
+
+  /* TIME SLOTS */
+  .time-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-top: 1rem;
+  }
+
+  .time-slot {
+    padding: 10px;
+    text-align: center;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--text);
+  }
+
+  .time-slot:hover { border-color: var(--green); background: var(--green-pale); }
+  .time-slot.selected { border-color: var(--green); background: var(--green); color: var(--white); }
+  .time-slot.disabled { opacity: 0.35; cursor: not-allowed; background: var(--cream-dark); }
+  .time-slot.disabled:hover { border-color: var(--border); background: var(--cream-dark); }
+
+  /* SERVICE MINI LIST */
+  .service-mini-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-bottom: 1.5rem;
+  }
+
+  .service-mini {
+    padding: 10px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .service-mini:hover { border-color: var(--green); background: var(--green-pale); }
+  .service-mini.selected { border-color: var(--green); background: var(--green); }
+  .service-mini.selected .s-name, .service-mini.selected .s-price { color: var(--white); }
+  .s-name { font-size: 13px; font-weight: 500; color: var(--text); }
+  .s-price { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--green-dark); }
+
+  /* SUMMARY */
+  .summary-box {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    font-size: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .summary-row:last-child { border-bottom: none; }
+  .summary-label { color: var(--text-muted); }
+  .summary-value { font-weight: 500; color: var(--text); }
+  .summary-total { font-size: 18px; font-weight: 600; color: var(--green-dark); }
+
+  /* CALENDAR */
+  .calendar-wrapper {
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+  }
+
+  .cal-header {
+    background: var(--green-dark);
+    color: var(--white);
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .cal-nav {
+    background: none;
+    border: none;
+    color: var(--white);
+    cursor: pointer;
+    font-size: 18px;
+    padding: 0 8px;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+
+  .cal-nav:hover { opacity: 1; }
+
+  .cal-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+  }
+
+  .cal-day-name {
+    text-align: center;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-light);
+    padding: 8px 0;
+    font-family: 'DM Mono', monospace;
+    background: var(--cream);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cal-day {
+    text-align: center;
+    padding: 10px 0;
+    font-size: 14px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.15s;
+    color: var(--text);
+  }
+
+  .cal-day:hover:not(.disabled):not(.empty) { background: var(--green-pale); color: var(--green-dark); }
+  .cal-day.selected { background: var(--green) !important; color: var(--white) !important; border-radius: 4px; }
+  .cal-day.disabled { color: var(--text-light); cursor: not-allowed; background: var(--cream-dark); }
+  .cal-day.empty { cursor: default; }
+  .cal-day.today { font-weight: 600; color: var(--green); }
+
+  /* NAV STEPS */
+  .step-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .btn-back {
+    background: none;
+    border: 1.5px solid var(--border);
+    color: var(--text-muted);
+    padding: 12px 24px;
+    border-radius: 40px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .btn-back:hover { border-color: var(--green); color: var(--green); }
+
+  .btn-next {
+    background: var(--green);
+    color: var(--white);
+    border: none;
+    padding: 12px 28px;
+    border-radius: 40px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .btn-next:hover { background: var(--green-dark); }
+  .btn-next:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  /* SUCCESS */
+  .success-screen {
+    display: none;
+    text-align: center;
+    padding: 3rem 2rem;
+  }
+
+  .success-icon {
+    width: 72px;
+    height: 72px;
+    background: var(--green-pale);
+    border: 3px solid var(--green);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 32px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--green-dark);
+    color: rgba(255,255,255,0.7);
+    padding: 3rem 2rem;
+    margin-top: 6rem;
+  }
+
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 2px;
+    color: var(--white);
+  }
+
+  .footer-info {
+    text-align: right;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+
+  /* SECTION DIVIDER */
+  .divider {
+    width: 48px;
+    height: 3px;
+    background: var(--green);
+    border-radius: 2px;
+    margin-bottom: 2rem;
+  }
+
+  /* NOTIFICATION */
+  .notif {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: var(--green-dark);
+    color: var(--white);
+    padding: 14px 22px;
+    border-radius: var(--radius);
+    font-size: 14px;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 999;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  }
+
+  .notif.show { transform: translateY(0); opacity: 1; }
+
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; padding: 100px 1.5rem 3rem; }
+    .hero h1 { font-size: 52px; }
+    .barbers-grid { grid-template-columns: 1fr; }
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .time-grid { grid-template-columns: repeat(3, 1fr); }
+    .service-mini-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    nav { padding: 0 1rem; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <svg class="scissors-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/>
+      <line x1="20" y1="4" x2="8.12" y2="15.88"/>
+      <line x1="14.47" y1="14.48" x2="20" y2="20"/>
+      <line x1="8.12" y1="8.12" x2="12" y2="12"/>
+    </svg>
+    <div class="nav-brand">Na Risca<span>Studio</span></div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#horarios">Horários</a></li>
+    <li><a href="#barbeiros">Barbeiros</a></li>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#agendar" class="nav-cta">Agendar</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">Barbearia Premium</div>
+    <h1>Estilo<em>Na Risca.</em></h1>
+    <p>Cortes precisos, atendimento personalizado e a experiência que você merece. Agende agora com os melhores barbeiros.</p>
+    <div class="hero-actions">
+      <a href="#agendar" class="btn-primary">Agendar Agora</a>
+      <a href="#servicos" class="btn-outline">Ver Serviços</a>
+    </div>
+  </div>
+
+  <div class="hero-visual" id="horarios">
+    <div class="hours-card">
+      <h3>Horários de Funcionamento</h3>
+      <div class="hours-row">
+        <span class="day-name">Segunda</span>
+        <span class="day-closed">Fechado</span>
+        <span class="status-badge status-closed">Fechado</span>
+      </div>
+      <div class="hours-row">
+        <span class="day-name">Terça</span>
+        <span class="day-hours">10:00 – 19:00</span>
+        <span class="status-badge status-open" id="badge-terca">—</span>
+      </div>
+      <div class="hours-row">
+        <span class="day-name">Quarta</span>
+        <span class="day-hours">10:00 – 19:00</span>
+        <span class="status-badge status-open" id="badge-quarta">—</span>
+      </div>
+      <div class="hours-row">
+        <span class="day-name">Quinta</span>
+        <span class="day-hours">10:00 – 21:45</span>
+        <span class="status-badge status-open" id="badge-quinta">—</span>
+      </div>
+      <div class="hours-row">
+        <span class="day-name">Sexta</span>
+        <span class="day-hours">10:00 – 21:45</span>
+        <span class="status-badge status-open" id="badge-sexta">—</span>
+      </div>
+      <div class="hours-row">
+        <span class="day-name">Sábado</span>
+        <span class="day-hours">10:00 – 18:00</span>
+        <span class="status-badge status-open" id="badge-sabado">—</span>
+      </div>
+      <div class="hours-row">
+        <span class="day-name">Domingo</span>
+        <span class="day-closed">Fechado</span>
+        <span class="status-badge status-closed">Fechado</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BARBERS -->
+<section class="section" id="barbeiros">
+  <div class="section-label">Nossos Profissionais</div>
+  <div class="section-title">Os Barbeiros</div>
+  <div class="divider"></div>
+  <div class="barbers-grid">
+    <div class="barber-card">
+      <div class="barber-avatar">PV</div>
+      <div class="barber-name">Pedro Vitor</div>
+      <div class="barber-nick">// PV</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" id="servicos" style="padding-top: 0;">
+  <div class="section-label">Tabela de Preços</div>
+  <div class="section-title">Serviços</div>
+  <div class="divider"></div>
+  <div class="services-grid">
+    <div class="service-card"><div><div class="service-name">Corte Simples</div></div><div class="service-price">R$ 20</div></div>
+    <div class="service-card"><div><div class="service-name">Corte Disfarçado (Máquina)</div></div><div class="service-price">R$ 40</div></div>
+    <div class="service-card"><div><div class="service-name">Corte Tesoura</div></div><div class="service-price">R$ 45</div></div>
+    <div class="service-card"><div><div class="service-name">Barba</div></div><div class="service-price">R$ 20</div></div>
+    <div class="service-card"><div><div class="service-name">Cavanhaque</div></div><div class="service-price">R$ 15</div></div>
+    <div class="service-card"><div><div class="service-name">Pezinho</div></div><div class="service-price">R$ 15</div></div>
+    <div class="service-card"><div><div class="service-name">Pigmentação</div></div><div class="service-price">R$ 15</div></div>
+    <div class="service-card"><div><div class="service-name">Reflexo</div></div><div class="service-price">R$ 50</div></div>
+    <div class="service-card"><div><div class="service-name">Nevou</div></div><div class="service-price">R$ 60</div></div>
+    <div class="service-card"><div><div class="service-name">Colorido</div></div><div class="service-price">R$ 65</div></div>
+    <div class="service-card"><div><div class="service-name">Alinhamento de Fios</div></div><div class="service-price">R$ 30</div></div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="section" id="agendar">
+  <div class="section-label">Reserve seu horário</div>
+  <div class="section-title">Agendamento</div>
+  <div class="divider"></div>
+
+  <div class="booking-wrapper">
+    <div class="booking-header">
+      <div>
+        <h2 id="step-title">Escolha o Barbeiro</h2>
+        <p id="step-subtitle">Passo 1 de 4</p>
+      </div>
+      <div class="booking-steps">
+        <div class="step-dot active" id="dot-1"></div>
+        <div class="step-dot" id="dot-2"></div>
+        <div class="step-dot" id="dot-3"></div>
+        <div class="step-dot" id="dot-4"></div>
+      </div>
+    </div>
+
+    <div class="booking-body">
+
+      <!-- Step 1: Barber -->
+      <div class="step-panel active" id="step-1">
+        <p style="font-size:14px; color: var(--text-muted); margin-bottom: 1.5rem;">Selecione com quem você prefere ser atendido:</p>
+        <div class="barber-select-grid">
+          <div class="barber-option" onclick="selectBarber(this, 'Pedro Vitor (PV)')">
+            <div class="mini-avatar">PV</div>
+            <div><div class="mini-name">Pedro Vitor</div><div class="mini-nick">// PV</div></div>
+          </div>
+        </div>
+        <div class="step-nav">
+          <div></div>
+          <button class="btn-next" id="next-1" onclick="goStep(2)" disabled>Próximo →</button>
+        </div>
+      </div>
+
+      <!-- Step 2: Service -->
+      <div class="step-panel" id="step-2">
+        <p style="font-size:14px; color: var(--text-muted); margin-bottom: 1.5rem;">Selecione um ou mais serviços desejados:</p>
+        <div class="service-mini-grid" id="services-list"></div>
+        <div style="background: var(--green-pale); border-radius: var(--radius-sm); padding: 12px 16px; font-family: 'DM Mono', monospace; font-size: 13px; display: flex; justify-content: space-between;">
+          <span style="color: var(--text-muted);">Total estimado:</span>
+          <span style="color: var(--green-dark); font-weight: 600;" id="total-display">R$ 0</span>
+        </div>
+        <div class="step-nav">
+          <button class="btn-back" onclick="goStep(1)">← Voltar</button>
+          <button class="btn-next" id="next-2" onclick="goStep(3)" disabled>Próximo →</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Date & Time -->
+      <div class="step-panel" id="step-3">
+        <p style="font-size:14px; color: var(--text-muted); margin-bottom: 1.5rem;">Escolha a data e o horário disponível:</p>
+        <div class="calendar-wrapper">
+          <div class="cal-header">
+            <button class="cal-nav" onclick="changeMonth(-1)">‹</button>
+            <span id="cal-month-label"></span>
+            <button class="cal-nav" onclick="changeMonth(1)">›</button>
+          </div>
+          <div class="cal-grid">
+            <div class="cal-day-name">Dom</div><div class="cal-day-name">Seg</div>
+            <div class="cal-day-name">Ter</div><div class="cal-day-name">Qua</div>
+            <div class="cal-day-name">Qui</div><div class="cal-day-name">Sex</div>
+            <div class="cal-day-name">Sáb</div>
+            <div id="cal-days"></div>
+          </div>
+        </div>
+        <div id="time-section" style="display:none;">
+          <label style="display:block; margin-bottom:8px;">Horários Disponíveis</label>
+          <div class="time-grid" id="time-slots"></div>
+        </div>
+        <div class="step-nav">
+          <button class="btn-back" onclick="goStep(2)">← Voltar</button>
+          <button class="btn-next" id="next-3" onclick="goStep(4)" disabled>Próximo →</button>
+        </div>
+      </div>
+
+      <!-- Step 4: Confirm -->
+      <div class="step-panel" id="step-4">
+        <p style="font-size:14px; color: var(--text-muted); margin-bottom: 1.5rem;">Confirme seus dados para finalizar o agendamento:</p>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nome Completo</label>
+            <input type="text" id="client-name" placeholder="Seu nome completo">
+          </div>
+          <div class="form-group">
+            <label>Telefone / WhatsApp</label>
+            <input type="tel" id="client-phone" placeholder="(00) 00000-0000" oninput="formatPhone(this)">
+          </div>
+        </div>
+        <div class="summary-box" id="booking-summary">
+          <div class="summary-row"><span class="summary-label">Barbeiro</span><span class="summary-value" id="s-barber">—</span></div>
+          <div class="summary-row"><span class="summary-label">Serviços</span><span class="summary-value" id="s-services">—</span></div>
+          <div class="summary-row"><span class="summary-label">Data</span><span class="summary-value" id="s-date">—</span></div>
+          <div class="summary-row"><span class="summary-label">Horário</span><span class="summary-value" id="s-time">—</span></div>
+          <div class="summary-row" style="border-bottom: none; padding-top: 12px;">
+            <span class="summary-label" style="font-weight: 600;">Total</span>
+            <span class="summary-value summary-total" id="s-total">—</span>
+          </div>
+        </div>
+        <div class="step-nav">
+          <button class="btn-back" onclick="goStep(3)">← Voltar</button>
+          <button class="btn-next" onclick="confirmarAgendamento(event)">Confirmar Agendamento ✓</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Success -->
+    <div class="success-screen" id="success-screen">
+      <div class="success-icon">✓</div>
+      <h2 style="font-family: 'Bebas Neue'; font-size: 36px; letter-spacing: 2px; color: var(--green-dark); margin-bottom: 8px;">Agendado!</h2>
+      <p style="color: var(--text-muted); font-size: 15px; margin-bottom: 2rem; max-width: 400px; margin-left: auto; margin-right: auto;">O WhatsApp foi aberto com os dados do seu agendamento. Envie a mensagem para confirmar com a barbearia! 💬</p>
+      <div class="summary-box" id="success-summary" style="max-width: 400px; margin: 0 auto 2rem;"></div>
+      <button class="btn-primary" onclick="resetBooking()">Fazer Novo Agendamento</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Na Risca Studio</div>
+      <p style="font-size: 13px; margin-top: 6px; color: rgba(255,255,255,0.5);">Estilo e precisão em cada corte.</p>
+    </div>
+    <div class="footer-info">
+      <div>Ter – Sex: 10h às 21h (Ter até 19h)</div>
+      <div>Sábado: 10h às 18h</div>
+      <div style="margin-top: 8px; color: rgba(255,255,255,0.4);">© 2025 Na Risca Studio</div>
+    </div>
+  </div>
+</footer>
+
+<div class="notif" id="notif"></div>
+
+<script>
+const SERVICES = [
+  { name: 'Corte Simples', price: 20 },
+  { name: 'Corte Disfarçado (Máquina)', price: 40 },
+  { name: 'Corte Tesoura', price: 45 },
+  { name: 'Barba', price: 20 },
+  { name: 'Cavanhaque', price: 15 },
+  { name: 'Pezinho', price: 15 },
+  { name: 'Pigmentação', price: 15 },
+  { name: 'Reflexo', price: 50 },
+  { name: 'Nevou', price: 60 },
+  { name: 'Colorido', price: 65 },
+  { name: 'Alinhamento de Fios', price: 30 },
+];
+
+const STEP_TITLES = ['Escolha o Barbeiro', 'Selecione o Serviço', 'Data & Horário', 'Confirmar'];
+let booking = { barber: '', services: [], date: null, time: '', total: 0 };
+let calYear, calMonth;
+
+// Init
+(function() {
+  const now = new Date();
+  calYear = now.getFullYear();
+  calMonth = now.getMonth();
+  buildServiceList();
+  renderCalendar();
+  updateStatusBadges();
+})();
+
+function updateStatusBadges() {
+  const now = new Date();
+  const day = now.getDay(); // 0=Sun,1=Mon,...6=Sat
+  const h = now.getHours() + now.getMinutes() / 60;
+  const days = ['badge-terca','badge-quarta','badge-quinta','badge-sexta','badge-sabado'];
+  const ends = [19, 19, 21.75, 21.75, 18];
+  const dayMap = [null, null, 0, 1, 2, 3, 4]; // day index in days array
+  days.forEach((id, i) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+    const isToday = dayMap[day] === i;
+    if (isToday && h >= 10 && h < ends[i]) {
+      el.textContent = 'Aberto';
+      el.className = 'status-badge status-open';
+    } else {
+      el.textContent = 'Fechado';
+      el.className = 'status-badge status-closed';
+    }
+  });
+}
+
+function selectBarber(el, name) {
+  document.querySelectorAll('.barber-option').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+  booking.barber = name;
+  document.getElementById('next-1').disabled = false;
+}
+
+function buildServiceList() {
+  const grid = document.getElementById('services-list');
+  grid.innerHTML = '';
+  SERVICES.forEach((s, i) => {
+    const div = document.createElement('div');
+    div.className = 'service-mini';
+    div.innerHTML = `<span class="s-name">${s.name}</span><span class="s-price">R$ ${s.price}</span>`;
+    div.onclick = () => toggleService(div, i);
+    grid.appendChild(div);
+  });
+}
+
+function toggleService(el, idx) {
+  el.classList.toggle('selected');
+  const s = SERVICES[idx];
+  const pos = booking.services.findIndex(x => x.name === s.name);
+  if (pos >= 0) booking.services.splice(pos, 1);
+  else booking.services.push(s);
+  booking.total = booking.services.reduce((a, b) => a + b.price, 0);
+  document.getElementById('total-display').textContent = 'R$ ' + booking.total;
+  document.getElementById('next-2').disabled = booking.services.length === 0;
+}
+
+function renderCalendar() {
+  const monthNames = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+  document.getElementById('cal-month-label').textContent = `${monthNames[calMonth]} ${calYear}`;
+  const firstDay = new Date(calYear, calMonth, 1).getDay();
+  const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+  const today = new Date();
+  const container = document.getElementById('cal-days');
+  container.style.cssText = 'display: contents;';
+  container.innerHTML = '';
+
+  // empty cells
+  for (let i = 0; i < firstDay; i++) {
+    const empty = document.createElement('div');
+    empty.className = 'cal-day empty';
+    container.appendChild(empty);
+  }
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const date = new Date(calYear, calMonth, d);
+    const dow = date.getDay();
+    const isPast = date < new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    const isClosed = dow === 0 || dow === 1; // Sun or Mon
+    const cell = document.createElement('div');
+    cell.className = 'cal-day';
+    if (isPast || isClosed) cell.classList.add('disabled');
+    if (date.toDateString() === today.toDateString()) cell.classList.add('today');
+    cell.textContent = d;
+    if (!isPast && !isClosed) {
+      cell.onclick = () => selectDate(cell, date);
+    }
+    container.appendChild(cell);
+  }
+}
+
+function changeMonth(dir) {
+  calMonth += dir;
+  if (calMonth > 11) { calMonth = 0; calYear++; }
+  if (calMonth < 0) { calMonth = 11; calYear--; }
+  renderCalendar();
+}
+
+async function selectDate(cell, date) {
+  document.querySelectorAll('.cal-day').forEach(c => c.classList.remove('selected'));
+  cell.classList.add('selected');
+
+  // Verifica dias bloqueados
+  const dateISO = date.toISOString().split('T')[0];
+  const bloqueados = await getDiasBloqueados();
+  if (bloqueados.includes(dateISO)) {
+    cell.classList.remove('selected');
+    showNotif('Este dia está fechado. Escolha outra data.');
+    document.getElementById('time-section').style.display = 'none';
+    document.getElementById('next-3').disabled = true;
+    return;
+  }
+
+  booking.date = date;
+  document.getElementById('next-3').disabled = true;
+  document.getElementById('time-section').style.display = 'block';
+  await renderTimeSlots(date);
+}
+
+async function renderTimeSlots(date) {
+  const dow = date.getDay();
+  let maxH = 22; // Quinta e Sexta: último slot 21:45
+  if (dow === 2) maxH = 19; // Terça
+  if (dow === 3) maxH = 19; // Quarta
+  if (dow === 6) maxH = 18; // Sábado
+
+  const slots = [];
+  let cur = 10 * 60; // começa às 10:00
+  const maxMins = maxH * 60;
+  while (cur < maxMins) {
+    const hh = Math.floor(cur / 60);
+    const mm = cur % 60;
+    slots.push(`${String(hh).padStart(2,'0')}:${String(mm).padStart(2,'0')}`);
+    cur += 45;
+  }
+
+  const now = new Date();
+  const isToday = date.toDateString() === now.toDateString();
+  const nowMins = now.getHours() * 60 + now.getMinutes();
+
+  const grid = document.getElementById('time-slots');
+  grid.innerHTML = '<div style="color:var(--text-muted);font-size:13px;padding:8px 0;">Verificando disponibilidade...</div>';
+  booking.time = '';
+
+  const dateISO = date.toISOString().split('T')[0];
+  let bookedTimes = new Set();
+  try {
+    const booked = await sbFetchBooked(booking.barber, dateISO);
+    bookedTimes = new Set(booked.map(b => b.horario));
+  } catch(e) { /* se falhar, mostra todos como disponíveis */ }
+
+  grid.innerHTML = '';
+
+  slots.forEach(t => {
+    const [hh, mm] = t.split(':').map(Number);
+    const slotMins = hh * 60 + mm;
+    const past = isToday && slotMins <= nowMins + 30;
+    const occupied = bookedTimes.has(t);
+    const div = document.createElement('div');
+    div.className = 'time-slot' + (past || occupied ? ' disabled' : '');
+    div.textContent = t;
+    if (occupied && !past) div.title = 'Horário ocupado';
+    if (!past && !occupied) div.onclick = () => selectTime(div, t);
+    grid.appendChild(div);
+  });
+}
+
+function selectTime(el, t) {
+  document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected'));
+  el.classList.add('selected');
+  booking.time = t;
+  document.getElementById('next-3').disabled = false;
+}
+
+function goStep(n) {
+  document.querySelectorAll('.step-panel').forEach((p, i) => {
+    p.classList.toggle('active', i + 1 === n);
+  });
+  for (let i = 1; i <= 4; i++) {
+    const dot = document.getElementById('dot-' + i);
+    dot.classList.toggle('active', i === n);
+  }
+  document.getElementById('step-title').textContent = STEP_TITLES[n - 1];
+  document.getElementById('step-subtitle').textContent = `Passo ${n} de 4`;
+  if (n === 4) updateSummary();
+}
+
+function updateSummary() {
+  document.getElementById('s-barber').textContent = booking.barber || '—';
+  document.getElementById('s-services').textContent = booking.services.map(s => s.name).join(', ') || '—';
+  if (booking.date) {
+    const opts = { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' };
+    document.getElementById('s-date').textContent = booking.date.toLocaleDateString('pt-BR', opts);
+  }
+  document.getElementById('s-time').textContent = booking.time || '—';
+  document.getElementById('s-total').textContent = 'R$ ' + booking.total;
+}
+
+function formatPhone(input) {
+  let v = input.value.replace(/\D/g, '').substring(0, 11);
+  if (v.length > 10) v = v.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
+  else if (v.length > 6) v = v.replace(/^(\d{2})(\d{4})(\d*)$/, '($1) $2-$3');
+  else if (v.length > 2) v = v.replace(/^(\d{2})(\d*)$/, '($1) $2');
+  input.value = v;
+}
+
+// ── SUPABASE CONFIG ──────────────────────────────────────
+const SB_URL = 'https://jlyzkizmghykggkjhkkw.supabase.co';
+const SB_KEY = 'sb_publishable_z5q9LVBebgFW7nxpem5tLg_xJ0sOnTh';
+
+async function sbInsert(row) {
+  const res = await fetch(`${SB_URL}/rest/v1/agendamentos`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'apikey': SB_KEY,
+      'Authorization': `Bearer ${SB_KEY}`,
+      'Prefer': 'return=minimal'
+    },
+    body: JSON.stringify(row)
+  });
+  if (!res.ok) {
+    const err = await res.text();
+    throw new Error(err);
+  }
+}
+
+async function sbFetch(filters = '') {
+  const res = await fetch(`${SB_URL}/rest/v1/agendamentos?order=data_agendamento.asc,horario.asc&status=neq.excluido${filters}&select=*`, {
+    headers: {
+      'apikey': SB_KEY,
+      'Authorization': `Bearer ${SB_KEY}`
+    }
+  });
+  return res.json();
+}
+
+async function sbFetchBooked(barber, dateISO) {
+  const res = await fetch(
+    `${SB_URL}/rest/v1/agendamentos?barbeiro=eq.${encodeURIComponent(barber)}&data_agendamento=eq.${dateISO}&status=in.(confirmado,concluido)&select=horario`,
+    { headers: { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}` } }
+  );
+  return res.json();
+}
+
+async function sbUpdateStatus(id, status) {
+  await fetch(`${SB_URL}/rest/v1/agendamentos?id=eq.${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      'apikey': SB_KEY,
+      'Authorization': `Bearer ${SB_KEY}`
+    },
+    body: JSON.stringify({ status })
+  });
+}
+
+// ── CONFIRMAR AGENDAMENTO ────────────────────────────────
+async function confirmarAgendamento(e) {
+  e.preventDefault();
+  const name = document.getElementById('client-name').value.trim();
+  const phone = document.getElementById('client-phone').value.trim();
+  if (!name || !phone) { showNotif('Preencha nome e telefone.'); return; }
+
+  const btn = document.querySelector('#step-4 .btn-next');
+  btn.disabled = true;
+  btn.textContent = 'Salvando...';
+
+  const opts = { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' };
+  const dateStr = booking.date ? booking.date.toLocaleDateString('pt-BR', opts) : '—';
+  const dateISO = booking.date ? booking.date.toISOString().split('T')[0] : '';
+
+  try {
+    await sbInsert({
+      cliente_nome: name,
+      cliente_telefone: phone,
+      barbeiro: booking.barber,
+      servicos: booking.services.map(s => s.name).join(', '),
+      total: booking.total,
+      data_agendamento: dateISO,
+      horario: booking.time,
+      status: 'confirmado'
+    });
+  } catch(err) {
+    showNotif('Erro ao salvar. Tente novamente.');
+    btn.disabled = false;
+    btn.textContent = 'Confirmar Agendamento ✓';
+    console.error(err);
+    return;
+  }
+
+  // Show success screen
+  document.querySelector('.booking-body').style.display = 'none';
+  document.querySelector('.booking-header').style.display = 'none';
+  document.getElementById('success-screen').style.display = 'block';
+
+  document.getElementById('success-summary').innerHTML = `
+    <div class="summary-row"><span class="summary-label">Cliente</span><span class="summary-value">${name}</span></div>
+    <div class="summary-row"><span class="summary-label">Barbeiro</span><span class="summary-value">${booking.barber}</span></div>
+    <div class="summary-row"><span class="summary-label">Serviços</span><span class="summary-value">${booking.services.map(s=>s.name).join(', ')}</span></div>
+    <div class="summary-row"><span class="summary-label">Data</span><span class="summary-value">${dateStr}</span></div>
+    <div class="summary-row"><span class="summary-label">Horário</span><span class="summary-value">${booking.time}</span></div>
+    <div class="summary-row" style="border-bottom:none;padding-top:12px"><span class="summary-label" style="font-weight:600;">Total</span><span class="summary-value summary-total">R$ ${booking.total}</span></div>
+  `;
+  // Dispara WhatsApp
+  const servicos = booking.services.map(s => `  • ${s.name} — R$ ${s.price}`).join('\n');
+  const msg = [
+    '*Novo Agendamento - Na Risca Studio*',
+    '',
+    `*Cliente:* ${name}`,
+    `*Telefone:* ${phone}`,
+    `*Barbeiro:* ${booking.barber}`,
+    '',
+    '*Serviços:*',
+    servicos,
+    '',
+    `*Data:* ${dateStr}`,
+    `*Horário:* ${booking.time}`,
+    `*Total:* R$ ${booking.total}`,
+    '',
+    '_Agendamento via site Na Risca Studio._'
+  ].join('\n');
+
+  const waNumber = '5521986417957';
+  const waURL = `https://api.whatsapp.com/send?phone=${waNumber}&text=${encodeURIComponent(msg)}`;
+  const a = document.createElement('a');
+  a.href = waURL;
+  a.target = '_blank';
+  a.rel = 'noopener noreferrer';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+
+  showNotif('✓ Agendamento salvo! WhatsApp aberto.');
+}
+
+function resetBooking() {
+  booking = { barber: '', services: [], date: null, time: '', total: 0 };
+  document.querySelector('.booking-body').style.display = 'block';
+  document.querySelector('.booking-header').style.display = 'flex';
+  document.getElementById('success-screen').style.display = 'none';
+  document.getElementById('client-name').value = '';
+  document.getElementById('client-phone').value = '';
+  document.getElementById('total-display').textContent = 'R$ 0';
+  document.querySelectorAll('.barber-option').forEach(b => b.classList.remove('selected'));
+  document.querySelectorAll('.service-mini').forEach(s => s.classList.remove('selected'));
+  document.getElementById('time-section').style.display = 'none';
+  document.getElementById('next-1').disabled = true;
+  document.getElementById('next-2').disabled = true;
+  document.getElementById('next-3').disabled = true;
+  const now = new Date(); calYear = now.getFullYear(); calMonth = now.getMonth();
+  renderCalendar();
+  goStep(1);
+}
+
+function showNotif(msg) {
+  const n = document.getElementById('notif');
+  n.textContent = msg;
+  n.classList.add('show');
+  setTimeout(() => n.classList.remove('show'), 3000);
+}
+
+
+// ── ADMIN PANEL ──────────────────────────────────────────
+const ADMIN_PASS = 'narisca2025';
+
+function switchAdminTab(tab) {
+  document.querySelectorAll('.adm-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.adm-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-btn-' + tab).classList.add('active');
+  document.getElementById('adm-panel-' + tab).classList.add('active');
+}
+
+function openAdmin() {
+  if (sessionStorage.getItem('admin_auth') === '1') {
+    document.getElementById('admin-overlay').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    adminLoad();
+    adminLoadMensalistas();
+    adminLoadDiasBloqueados();
+  } else {
+    document.getElementById('admin-login-overlay').style.display = 'flex';
+    document.getElementById('admin-pass-input').value = '';
+    document.getElementById('admin-login-error').style.display = 'none';
+    setTimeout(() => document.getElementById('admin-pass-input').focus(), 50);
+  }
+}
+
+function submitAdminLogin() {
+  const val = document.getElementById('admin-pass-input').value;
+  if (val === ADMIN_PASS) {
+    sessionStorage.setItem('admin_auth', '1');
+    document.getElementById('admin-login-overlay').style.display = 'none';
+    document.getElementById('admin-overlay').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    adminLoad();
+    adminLoadMensalistas();
+    adminLoadDiasBloqueados();
+  } else {
+    document.getElementById('admin-login-error').style.display = 'block';
+    document.getElementById('admin-pass-input').value = '';
+    document.getElementById('admin-pass-input').focus();
+  }
+}
+
+function closeAdminLogin() {
+  document.getElementById('admin-login-overlay').style.display = 'none';
+}
+
+function closeAdmin() {
+  document.getElementById('admin-overlay').style.display = 'none';
+  document.body.style.overflow = '';
+}
+
+async function adminLoad() {
+  const tbody = document.getElementById('admin-tbody');
+  tbody.innerHTML = '<tr><td colspan="6" style="padding:2rem; text-align:center; color:var(--text-light);">Carregando...</td></tr>';
+
+  let filters = '';
+  const barber = document.getElementById('admin-filter-barber').value;
+  const date = document.getElementById('admin-filter-date').value;
+  const statusF = document.getElementById('admin-filter-status') ? document.getElementById('admin-filter-status').value : '';
+  if (barber) filters += `&barbeiro=eq.${encodeURIComponent(barber)}`;
+  if (date) filters += `&data_agendamento=eq.${date}`;
+  if (statusF) filters += `&status=eq.${statusF}`;
+
+  let data;
+  try {
+    data = await sbFetch(filters);
+  } catch(e) {
+    tbody.innerHTML = '<tr><td colspan="6" style="padding:2rem; text-align:center; color:red;">Erro ao carregar.</td></tr>';
+    return;
+  }
+
+  // Stats
+  const total = data.reduce((a,b) => a + Number(b.total), 0);
+  const confirmados = data.filter(d => d.status === 'confirmado').length;
+  const cancelados = data.filter(d => d.status === 'cancelado').length;
+  document.getElementById('admin-stats').innerHTML = `
+    <div style="background:var(--cream); border-radius:10px; padding:1rem 1.2rem;">
+      <div style="font-size:11px; color:var(--text-muted); font-family:'DM Mono',monospace; letter-spacing:1px; text-transform:uppercase; margin-bottom:4px;">Total Agendamentos</div>
+      <div style="font-family:'Bebas Neue'; font-size:32px; color:var(--green-dark); letter-spacing:1px;">${data.length}</div>
+    </div>
+    <div style="background:var(--cream); border-radius:10px; padding:1rem 1.2rem;">
+      <div style="font-size:11px; color:var(--text-muted); font-family:'DM Mono',monospace; letter-spacing:1px; text-transform:uppercase; margin-bottom:4px;">Receita Prevista</div>
+      <div style="font-family:'Bebas Neue'; font-size:32px; color:var(--green-dark); letter-spacing:1px;">R$ ${total}</div>
+    </div>
+    <div style="background:var(--cream); border-radius:10px; padding:1rem 1.2rem;">
+      <div style="font-size:11px; color:var(--text-muted); font-family:'DM Mono',monospace; letter-spacing:1px; text-transform:uppercase; margin-bottom:4px;">Confirmados / Cancelados</div>
+      <div style="font-family:'Bebas Neue'; font-size:32px; color:var(--green-dark); letter-spacing:1px;">${confirmados} / ${cancelados}</div>
+    </div>
+  `;
+
+  if (!data.length) {
+    tbody.innerHTML = '<tr><td colspan="6" style="padding:2rem; text-align:center; color:var(--text-light);">Nenhum agendamento encontrado.</td></tr>';
+    return;
+  }
+
+  tbody.innerHTML = data.map(d => {
+    const dt = new Date(d.data_agendamento + 'T12:00:00');
+    const dateFormatted = dt.toLocaleDateString('pt-BR', { day:'2-digit', month:'2-digit', year:'numeric' });
+    const statusColor = d.status === 'confirmado' ? 'var(--green)' : d.status === 'cancelado' ? '#e55' : '#f90';
+    const statusBg = d.status === 'confirmado' ? 'var(--green-pale)' : d.status === 'cancelado' ? '#fee' : '#fff3e0';
+    return `<tr style="border-bottom:1px solid var(--border);">
+      <td style="padding:12px; vertical-align:top;">
+        <div style="font-weight:500;">${d.cliente_nome}</div>
+        <div style="font-size:12px; color:var(--text-muted);">${d.cliente_telefone}</div>
+      </td>
+      <td style="padding:12px; vertical-align:top;">
+        <div style="font-size:12px; font-family:'DM Mono',monospace; background:var(--green-pale); color:var(--green-dark); padding:3px 8px; border-radius:4px; display:inline-block;">${d.barbeiro.includes('PV') ? 'PV' : 'PH'}</div>
+        <div style="font-size:12px; color:var(--text-muted); margin-top:4px;">${d.barbeiro}</div>
+      </td>
+      <td style="padding:12px; vertical-align:top; font-size:12px; color:var(--text-muted); max-width:180px;">${d.servicos}</td>
+      <td style="padding:12px; vertical-align:top;">
+        <div style="font-family:'DM Mono',monospace; font-size:13px;">${dateFormatted}</div>
+        <div style="font-size:12px; color:var(--text-muted);">${d.horario}</div>
+      </td>
+      <td style="padding:12px; vertical-align:top; font-family:'DM Mono',monospace; font-weight:600; color:var(--green-dark);">R$ ${d.total}</td>
+      <td style="padding:12px; vertical-align:top;">
+        <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
+          <select onchange="adminChangeStatus('${d.id}', this.value, this)" data-prev="${d.status}" style="padding:5px 8px; border-radius:6px; border:1px solid ${statusColor}; background:${statusBg}; color:${statusColor}; font-size:12px; cursor:pointer; font-family:'DM Sans',sans-serif;">
+            <option value="confirmado" ${d.status==='confirmado'?'selected':''}>Confirmado</option>
+            <option value="concluido" ${d.status==='concluido'?'selected':''}>Concluído</option>
+            <option value="cancelado" ${d.status==='cancelado'?'selected':''}>Cancelado</option>
+          </select>
+          <button onclick="adminDelete('${d.id}')" style="background:#fee;color:#c44;border:1px solid #c44;padding:4px 10px;border-radius:6px;font-size:11px;cursor:pointer;" title="Excluir">🗑</button>
+        </div>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+async function adminChangeStatus(id, status, sel) {
+  sel.disabled = true;
+  try {
+    await sbUpdateStatus(id, status);
+    showNotif('Status atualizado!');
+  } catch(e) {
+    showNotif('Erro ao atualizar status.');
+    sel.value = sel.dataset.prev;
+  }
+  sel.disabled = false;
+  adminLoad();
+}
+
+
+async function adminDelete(id) {
+  if (!window.confirm('Excluir este agendamento?')) return;
+  try {
+    const res = await fetch(`${SB_URL}/rest/v1/agendamentos?id=eq.${id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json', 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}` },
+      body: JSON.stringify({ status: 'excluido' })
+    });
+    if (!res.ok) { const e = await res.text(); throw new Error(e); }
+    showNotif('Agendamento excluído!');
+    adminLoad();
+  } catch(e) {
+    showNotif('Erro ao excluir: ' + e.message);
+  }
+}
+
+async function adminDeleteAllCancelados() {
+  const data = await sbFetch('&status=eq.cancelado');
+  if (!data.length) { showNotif('Nenhum cancelado encontrado.'); return; }
+  if (!window.confirm(`Excluir todos os ${data.length} agendamento(s) cancelado(s)?`)) return;
+  try {
+    const res = await fetch(`${SB_URL}/rest/v1/agendamentos?status=eq.cancelado`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json', 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}` },
+      body: JSON.stringify({ status: 'excluido' })
+    });
+    if (!res.ok) { const e = await res.text(); throw new Error(e); }
+    showNotif(`${data.length} cancelado(s) removido(s)!`);
+    adminLoad();
+  } catch(e) {
+    showNotif('Erro: ' + e.message);
+  }
+}
+
+// ── MENSALISTAS ──────────────────────────────────────────
+async function adminLoadMensalistas() {
+  const res = await fetch(`${SB_URL}/rest/v1/mensalistas?order=nome.asc&select=*`, {
+    headers: { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}` }
+  });
+  const data = await res.json();
+  const el = document.getElementById('mensalistas-tbody');
+  if (!el) return;
+  if (!data.length) {
+    el.innerHTML = '<tr><td colspan="5" style="padding:1.5rem; text-align:center; color:var(--text-light);">Nenhum mensalista cadastrado.</td></tr>';
+    return;
+  }
+  el.innerHTML = data.map(m => `
+    <tr style="border-bottom:1px solid var(--border);">
+      <td style="padding:10px 12px; font-weight:500;">${m.nome}</td>
+      <td style="padding:10px 12px; font-size:13px; color:var(--text-muted);">${m.telefone}</td>
+      <td style="padding:10px 12px;">
+        <span style="font-family:'DM Mono',monospace; background:var(--green-pale); color:var(--green-dark); padding:2px 8px; border-radius:4px; font-size:12px;">${m.barbeiro.includes('PV') ? 'PV' : 'PH'}</span>
+        <span style="font-size:12px; color:var(--text-muted); margin-left:6px;">${m.barbeiro}</span>
+      </td>
+      <td style="padding:10px 12px; font-size:12px; color:var(--text-muted);">${m.observacao || '—'}</td>
+      <td style="padding:10px 12px;">
+        <button onclick="adminDeleteMensalista('${m.id}')" style="background:#fee;color:#c44;border:1px solid #c44;padding:3px 10px;border-radius:6px;font-size:11px;cursor:pointer;">🗑</button>
+      </td>
+    </tr>`).join('');
+}
+
+async function adminSaveMensalista() {
+  const nome = document.getElementById('m-nome').value.trim();
+  const telefone = document.getElementById('m-tel').value.trim();
+  const barbeiro = document.getElementById('m-barbeiro').value;
+  const servico = document.getElementById('m-servico').value;
+  const obs = document.getElementById('m-obs').value.trim();
+  const data = document.getElementById('m-data').value;
+  const horario = document.getElementById('m-horario').value;
+  const observacao = [servico, obs].filter(Boolean).join(' — ');
+  if (!nome || !telefone || !barbeiro) { showNotif('Preencha nome, telefone e barbeiro.'); return; }
+  await fetch(`${SB_URL}/rest/v1/mensalistas`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}`, 'Prefer': 'return=minimal' },
+    body: JSON.stringify({ nome, telefone, barbeiro, observacao })
+  });
+  if (data && horario) {
+    const startDate = new Date(data + 'T12:00:00');
+    const endDate = new Date(startDate);
+    endDate.setMonth(endDate.getMonth() + 6);
+    const rows = [];
+    const cur = new Date(startDate);
+    while (cur <= endDate) {
+      rows.push({
+        cliente_nome: nome,
+        cliente_telefone: telefone,
+        barbeiro: barbeiro,
+        servicos: servico || 'Mensalista',
+        total: 0,
+        data_agendamento: cur.toISOString().split('T')[0],
+        horario: horario,
+        status: 'confirmado'
+      });
+      cur.setDate(cur.getDate() + 7);
+    }
+    await fetch(`${SB_URL}/rest/v1/agendamentos`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}`, 'Prefer': 'return=minimal' },
+      body: JSON.stringify(rows)
+    });
+  }
+  document.getElementById('m-nome').value = '';
+  document.getElementById('m-tel').value = '';
+  document.getElementById('m-servico').value = '';
+  document.getElementById('m-obs').value = '';
+  document.getElementById('m-data').value = '';
+  document.getElementById('m-horario').value = '';
+  showNotif(data && horario ? 'Mensalista cadastrado e horário bloqueado!' : 'Mensalista cadastrado!');
+  adminLoadMensalistas();
+}
+
+async function adminDeleteMensalista(id) {
+  if (!window.confirm('Remover mensalista e liberar todos os horários dele na agenda?')) return;
+  try {
+    const resGet = await fetch(`${SB_URL}/rest/v1/mensalistas?id=eq.${id}&select=nome,telefone,barbeiro`, {
+      headers: { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}` }
+    });
+    const rows = await resGet.json();
+    const mens = rows[0];
+
+    const res = await fetch(`${SB_URL}/rest/v1/mensalistas?id=eq.${id}`, {
+      method: 'DELETE',
+      headers: { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}` }
+    });
+    if (!res.ok) { const e = await res.text(); throw new Error(e); }
+
+    if (mens) {
+      await fetch(
+        `${SB_URL}/rest/v1/agendamentos?cliente_nome=eq.${encodeURIComponent(mens.nome)}&cliente_telefone=eq.${encodeURIComponent(mens.telefone)}&barbeiro=eq.${encodeURIComponent(mens.barbeiro)}&status=eq.confirmado`,
+        {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json', 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}` },
+          body: JSON.stringify({ status: 'excluido' })
+        }
+      );
+    }
+
+    showNotif('Mensalista removido e horários liberados na agenda!');
+    adminLoadMensalistas();
+    adminLoad();
+  } catch(e) {
+    showNotif('Erro ao remover: ' + e.message);
+  }
+}
+
+// ── DIAS BLOQUEADOS ──────────────────────────────────────
+let diasBloqueadosCache = null;
+
+async function getDiasBloqueados() {
+  if (diasBloqueadosCache) return diasBloqueadosCache;
+  try {
+    const res = await fetch(`${SB_URL}/rest/v1/dias_bloqueados?select=data`, {
+      headers: { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}` }
+    });
+    const data = await res.json();
+    diasBloqueadosCache = data.map(d => d.data);
+  } catch(e) { diasBloqueadosCache = []; }
+  return diasBloqueadosCache;
+}
+
+async function adminLoadDiasBloqueados() {
+  const res = await fetch(`${SB_URL}/rest/v1/dias_bloqueados?order=data.asc&select=*`, {
+    headers: { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}` }
+  });
+  const data = await res.json();
+  const el = document.getElementById('dias-tbody');
+  if (!el) return;
+  if (!data.length) {
+    el.innerHTML = '<tr><td colspan="3" style="padding:1.5rem; text-align:center; color:var(--text-light);">Nenhum dia bloqueado.</td></tr>';
+    return;
+  }
+  el.innerHTML = data.map(d => {
+    const dt = new Date(d.data + 'T12:00:00');
+    const fmt = dt.toLocaleDateString('pt-BR', { weekday:'long', day:'2-digit', month:'2-digit', year:'numeric' });
+    return `<tr style="border-bottom:1px solid var(--border);">
+      <td style="padding:10px 12px; font-weight:500; text-transform:capitalize;">${fmt}</td>
+      <td style="padding:10px 12px; font-size:13px; color:var(--text-muted);">${d.motivo || '—'}</td>
+      <td style="padding:10px 12px;">
+        <button onclick="adminDeleteDia('${d.id}')" style="background:#fee;color:#c44;border:1px solid #c44;padding:3px 10px;border-radius:6px;font-size:11px;cursor:pointer;">🗑 Desbloquear</button>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+async function adminBloquearDia() {
+  const data = document.getElementById('bloquear-data').value;
+  const motivo = document.getElementById('bloquear-motivo').value.trim();
+  if (!data) { showNotif('Selecione uma data.'); return; }
+  try {
+    await fetch(`${SB_URL}/rest/v1/dias_bloqueados`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}`, 'Prefer': 'return=minimal' },
+      body: JSON.stringify({ data, motivo })
+    });
+    document.getElementById('bloquear-data').value = '';
+    document.getElementById('bloquear-motivo').value = '';
+    showNotif('Dia bloqueado com sucesso!');
+    adminLoadDiasBloqueados();
+    diasBloqueadosCache = null;
+  } catch(e) { showNotif('Erro ao bloquear dia.'); }
+}
+
+async function adminDeleteDia(id) {
+  await fetch(`${SB_URL}/rest/v1/dias_bloqueados?id=eq.${id}`, {
+    method: 'DELETE',
+    headers: { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}` }
+  });
+  showNotif('Dia desbloqueado!');
+  adminLoadDiasBloqueados();
+  diasBloqueadosCache = null;
+}
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+
+<!-- ADMIN LOGIN -->
+<div id="admin-login-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.75); z-index:300; align-items:center; justify-content:center;">
+  <div style="background:var(--white); border-radius:16px; padding:2.5rem; width:100%; max-width:360px; box-shadow:0 20px 60px rgba(0,0,0,0.3); text-align:center;">
+    <div style="font-family:'Bebas Neue'; font-size:28px; letter-spacing:2px; color:var(--green-dark); margin-bottom:4px;">Painel Admin</div>
+    <div style="font-size:13px; color:var(--text-muted); margin-bottom:1.5rem;">Na Risca Studio</div>
+    <div style="text-align:left; margin-bottom:1rem;">
+      <label style="display:block; margin-bottom:6px;">Senha</label>
+      <input type="password" id="admin-pass-input" placeholder="••••••••" onkeydown="if(event.key==='Enter') submitAdminLogin()" style="width:100%;">
+    </div>
+    <div id="admin-login-error" style="display:none; color:#e55; font-size:13px; margin-bottom:1rem;">Senha incorreta.</div>
+    <div style="display:flex; gap:1rem;">
+      <button onclick="closeAdminLogin()" style="flex:1; padding:11px; border-radius:40px; border:1.5px solid var(--border); background:transparent; color:var(--text-muted); cursor:pointer; font-family:'DM Sans',sans-serif; font-size:14px;">Cancelar</button>
+      <button onclick="submitAdminLogin()" style="flex:1; padding:11px; border-radius:40px; border:none; background:var(--green); color:var(--white); cursor:pointer; font-family:'DM Sans',sans-serif; font-size:14px; font-weight:500;">Entrar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN PANEL -->
+<style>
+.adm-tab { padding:10px 18px; border:none; background:none; color:rgba(255,255,255,0.55); font-family:'DM Sans',sans-serif; font-size:14px; font-weight:500; cursor:pointer; border-bottom:2px solid transparent; transition:all 0.2s; white-space:nowrap; }
+.adm-tab.active { color:#fff; border-bottom-color:#fff; }
+.adm-panel { display:none; }
+.adm-panel.active { display:block; }
+</style>
+<div id="admin-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.7); z-index:200; overflow-y:auto;">
+  <div style="max-width:960px; margin:2rem auto; background:var(--white); border-radius:20px; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,0.3);">
+
+    <!-- Header -->
+    <div style="background:var(--green-dark); padding:1.5rem 2rem 0;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+        <div>
+          <div style="font-family:'Bebas Neue'; font-size:28px; letter-spacing:2px; color:var(--white);">Painel Admin</div>
+          <div style="font-size:12px; color:rgba(255,255,255,0.6); font-family:'DM Mono',monospace; letter-spacing:1px;">Na Risca Studio</div>
+        </div>
+        <button onclick="closeAdmin()" style="background:rgba(255,255,255,0.15); border:none; color:var(--white); padding:8px 16px; border-radius:8px; cursor:pointer; font-size:13px; font-family:'DM Sans',sans-serif;">✕ Fechar</button>
+      </div>
+      <div style="display:flex; gap:2px;">
+        <button class="adm-tab active" id="tab-btn-agend" onclick="switchAdminTab('agend')">📋 Agendamentos</button>
+        <button class="adm-tab" id="tab-btn-mens" onclick="switchAdminTab('mens')">⭐ Mensalistas</button>
+        <button class="adm-tab" id="tab-btn-dias" onclick="switchAdminTab('dias')">🔒 Fechar Dias</button>
+      </div>
+    </div>
+
+    <!-- TAB Agendamentos -->
+    <div id="adm-panel-agend" class="adm-panel active" style="padding:1.5rem 2rem;">
+      <div style="display:flex; gap:1rem; margin-bottom:1.5rem; flex-wrap:wrap;">
+        <select id="admin-filter-barber" onchange="adminLoad()" style="padding:8px 12px; border-radius:8px; border:1.5px solid var(--border); font-size:13px; background:var(--cream); color:var(--text); cursor:pointer; font-family:'DM Sans',sans-serif;">
+          <option value="">Todos os barbeiros</option>
+          <option value="Pedro Vitor (PV)">Pedro Vitor (PV)</option>
+        </select>
+        <input type="date" id="admin-filter-date" onchange="adminLoad()" style="padding:8px 12px; border-radius:8px; border:1.5px solid var(--border); font-size:13px; background:var(--cream); color:var(--text); cursor:pointer;">
+        <select id="admin-filter-status" onchange="adminLoad()" style="padding:8px 12px; border-radius:8px; border:1.5px solid var(--border); font-size:13px; background:var(--cream); color:var(--text); cursor:pointer; font-family:'DM Sans',sans-serif;">
+          <option value="">Todos os status</option>
+          <option value="confirmado">Confirmado</option>
+          <option value="concluido">Concluído</option>
+          <option value="cancelado">Cancelado</option>
+        </select>
+        <button onclick="adminDeleteAllCancelados()" style="padding:8px 16px; border-radius:8px; border:1.5px solid #c44; background:#fee; color:#c44; font-size:13px; font-weight:500; cursor:pointer; font-family:'DM Sans',sans-serif; white-space:nowrap;">🗑 Limpar Cancelados</button>
+      </div>
+      <div id="admin-stats" style="display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-bottom:1.5rem;"></div>
+      <div style="overflow-x:auto;">
+        <table style="width:100%; border-collapse:collapse; font-size:13px;">
+          <thead>
+            <tr style="background:var(--cream); text-align:left;">
+              <th style="padding:10px 12px; font-weight:600; color:var(--text-muted); font-family:'DM Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase;">Cliente</th>
+              <th style="padding:10px 12px; font-weight:600; color:var(--text-muted); font-family:'DM Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase;">Barbeiro</th>
+              <th style="padding:10px 12px; font-weight:600; color:var(--text-muted); font-family:'DM Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase;">Serviços</th>
+              <th style="padding:10px 12px; font-weight:600; color:var(--text-muted); font-family:'DM Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase;">Data & Hora</th>
+              <th style="padding:10px 12px; font-weight:600; color:var(--text-muted); font-family:'DM Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase;">Total</th>
+              <th style="padding:10px 12px; font-weight:600; color:var(--text-muted); font-family:'DM Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase;">Ações</th>
+            </tr>
+          </thead>
+          <tbody id="admin-tbody">
+            <tr><td colspan="6" style="padding:2rem; text-align:center; color:var(--text-light);">Carregando...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TAB Mensalistas -->
+    <div id="adm-panel-mens" class="adm-panel" style="padding:1.5rem 2rem;">
+      <div style="background:var(--cream); border-radius:12px; padding:1.5rem; margin-bottom:1.5rem;">
+        <div style="font-weight:600; font-size:15px; margin-bottom:1rem; color:var(--green-dark);">Cadastrar Mensalista</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem;">
+          <div>
+            <label style="font-size:11px; font-family:'DM Mono',monospace; letter-spacing:1px; color:var(--text-muted); text-transform:uppercase;">Nome</label>
+            <input id="m-nome" type="text" placeholder="Nome completo" style="width:100%; margin-top:4px; padding:10px 12px; border:1.5px solid var(--border); border-radius:8px; font-size:14px; background:var(--white); font-family:'DM Sans',sans-serif; outline:none;">
+          </div>
+          <div>
+            <label style="font-size:11px; font-family:'DM Mono',monospace; letter-spacing:1px; color:var(--text-muted); text-transform:uppercase;">Telefone</label>
+            <input id="m-tel" type="tel" placeholder="(21) 99999-0000" style="width:100%; margin-top:4px; padding:10px 12px; border:1.5px solid var(--border); border-radius:8px; font-size:14px; background:var(--white); font-family:'DM Sans',sans-serif; outline:none;">
+          </div>
+          <div>
+            <label style="font-size:11px; font-family:'DM Mono',monospace; letter-spacing:1px; color:var(--text-muted); text-transform:uppercase;">Barbeiro</label>
+            <select id="m-barbeiro" style="width:100%; margin-top:4px; padding:10px 12px; border:1.5px solid var(--border); border-radius:8px; font-size:14px; background:var(--white); font-family:'DM Sans',sans-serif; outline:none;">
+              <option value="">Selecione...</option>
+              <option value="Pedro Vitor (PV)">Pedro Vitor (PV)</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size:11px; font-family:'DM Mono',monospace; letter-spacing:1px; color:var(--text-muted); text-transform:uppercase;">Tipo de Corte</label>
+            <select id="m-servico" style="width:100%; margin-top:4px; padding:10px 12px; border:1.5px solid var(--border); border-radius:8px; font-size:14px; background:var(--white); font-family:'DM Sans',sans-serif; outline:none;">
+              <option value="">Selecione...</option>
+              <option>Corte Simples</option>
+              <option>Corte Disfarçado (Máquina)</option>
+              <option>Corte Tesoura</option>
+              <option>Barba</option>
+              <option>Corte + Barba</option>
+              <option>Cavanhaque</option>
+              <option>Pezinho</option>
+              <option>Pigmentação</option>
+              <option>Reflexo</option>
+              <option>Nevou</option>
+              <option>Colorido</option>
+              <option>Alinhamento de Fios</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size:11px; font-family:'DM Mono',monospace; letter-spacing:1px; color:var(--text-muted); text-transform:uppercase;">Observação</label>
+            <input id="m-obs" type="text" placeholder="Ex: toda terça às 10h" style="width:100%; margin-top:4px; padding:10px 12px; border:1.5px solid var(--border); border-radius:8px; font-size:14px; background:var(--white); font-family:'DM Sans',sans-serif; outline:none;">
+          </div>
+          <div>
+            <label style="font-size:11px; font-family:'DM Mono',monospace; letter-spacing:1px; color:var(--text-muted); text-transform:uppercase;">Data do Agendamento</label>
+            <input id="m-data" type="date" style="width:100%; margin-top:4px; padding:10px 12px; border:1.5px solid var(--border); border-radius:8px; font-size:14px; background:var(--white); font-family:'DM Sans',sans-serif; outline:none;">
+          </div>
+          <div>
+            <label style="font-size:11px; font-family:'DM Mono',monospace; letter-spacing:1px; color:var(--text-muted); text-transform:uppercase;">Horário</label>
+            <select id="m-horario" style="width:100%; margin-top:4px; padding:10px 12px; border:1.5px solid var(--border); border-radius:8px; font-size:14px; background:var(--white); font-family:'DM Sans',sans-serif; outline:none;">
+              <option value="">— sem agendamento —</option>
+              <option value="10:00">10:00</option>
+              <option value="10:45">10:45</option>
+              <option value="11:30">11:30</option>
+              <option value="12:15">12:15</option>
+              <option value="13:00">13:00</option>
+              <option value="13:45">13:45</option>
+              <option value="14:30">14:30</option>
+              <option value="15:15">15:15</option>
+              <option value="16:00">16:00</option>
+              <option value="16:45">16:45</option>
+              <option value="17:30">17:30</option>
+              <option value="18:15">18:15</option>
+              <option value="19:00">19:00</option>
+              <option value="19:45">19:45</option>
+              <option value="20:30">20:30</option>
+            </select>
+          </div>
+        </div>
+        <button onclick="adminSaveMensalista()" style="background:var(--green); color:#fff; border:none; padding:10px 24px; border-radius:8px; font-size:14px; font-weight:500; cursor:pointer; font-family:'DM Sans',sans-serif;">+ Cadastrar</button>
+      </div>
+      <div style="overflow-x:auto;">
+        <table style="width:100%; border-collapse:collapse; font-size:13px;">
+          <thead><tr style="background:var(--cream); text-align:left;">
+            <th style="padding:10px 12px; font-family:'DM Mono',monospace; font-size:11px; color:var(--text-muted); text-transform:uppercase; font-weight:600;">Nome</th>
+            <th style="padding:10px 12px; font-family:'DM Mono',monospace; font-size:11px; color:var(--text-muted); text-transform:uppercase; font-weight:600;">Telefone</th>
+            <th style="padding:10px 12px; font-family:'DM Mono',monospace; font-size:11px; color:var(--text-muted); text-transform:uppercase; font-weight:600;">Barbeiro</th>
+            <th style="padding:10px 12px; font-family:'DM Mono',monospace; font-size:11px; color:var(--text-muted); text-transform:uppercase; font-weight:600;">Tipo de Corte / Obs</th>
+            <th style="padding:10px 12px;"></th>
+          </tr></thead>
+          <tbody id="mensalistas-tbody">
+            <tr><td colspan="5" style="padding:2rem; text-align:center; color:var(--text-light);">Carregando...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- TAB Fechar Dias -->
+    <div id="adm-panel-dias" class="adm-panel" style="padding:1.5rem 2rem;">
+      <div style="background:var(--cream); border-radius:12px; padding:1.5rem; margin-bottom:1.5rem;">
+        <div style="font-weight:600; font-size:15px; margin-bottom:1rem; color:var(--green-dark);">Bloquear um Dia</div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem;">
+          <div>
+            <label style="font-size:11px; font-family:'DM Mono',monospace; letter-spacing:1px; color:var(--text-muted); text-transform:uppercase;">Data</label>
+            <input id="bloquear-data" type="date" style="width:100%; margin-top:4px; padding:10px 12px; border:1.5px solid var(--border); border-radius:8px; font-size:14px; background:var(--white); font-family:'DM Sans',sans-serif; outline:none;">
+          </div>
+          <div>
+            <label style="font-size:11px; font-family:'DM Mono',monospace; letter-spacing:1px; color:var(--text-muted); text-transform:uppercase;">Motivo (opcional)</label>
+            <input id="bloquear-motivo" type="text" placeholder="Ex: Feriado, folga..." style="width:100%; margin-top:4px; padding:10px 12px; border:1.5px solid var(--border); border-radius:8px; font-size:14px; background:var(--white); font-family:'DM Sans',sans-serif; outline:none;">
+          </div>
+        </div>
+        <button onclick="adminBloquearDia()" style="background:#c44; color:#fff; border:none; padding:10px 24px; border-radius:8px; font-size:14px; font-weight:500; cursor:pointer; font-family:'DM Sans',sans-serif;">🔒 Bloquear Dia</button>
+      </div>
+      <div style="overflow-x:auto;">
+        <table style="width:100%; border-collapse:collapse; font-size:13px;">
+          <thead><tr style="background:var(--cream); text-align:left;">
+            <th style="padding:10px 12px; font-family:'DM Mono',monospace; font-size:11px; color:var(--text-muted); text-transform:uppercase; font-weight:600;">Data</th>
+            <th style="padding:10px 12px; font-family:'DM Mono',monospace; font-size:11px; color:var(--text-muted); text-transform:uppercase; font-weight:600;">Motivo</th>
+            <th style="padding:10px 12px;"></th>
+          </tr></thead>
+          <tbody id="dias-tbody">
+            <tr><td colspan="3" style="padding:2rem; text-align:center; color:var(--text-light);">Carregando...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Admin trigger (hidden shortcut) -->
+<div id="admin-trigger" onclick="openAdmin()" style="position:fixed; bottom:1.5rem; left:1.5rem; width:40px; height:40px; border-radius:50%; background:var(--green-dark); display:flex; align-items:center; justify-content:center; cursor:pointer; opacity:0.15; transition:opacity 0.3s; z-index:50;" title="Admin">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+</div>
+<style>#admin-trigger:hover { opacity:0.9 !important; }</style>
+
+</body>
+</html>
