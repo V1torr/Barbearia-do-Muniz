@@ -3,32 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Na Risca Studio — Agendamento</title>
+<title>Agendamento</title>
+<link rel="icon" type="image/jpeg" href="logo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --green: #4a6741;
-    --green-light: #5c7f52;
-    --green-dark: #2e3f2c;
-    --green-pale: #eef2ed;
-    --green-mid: #3a5537;
-    --cream: #f7f5f0;
-    --cream-dark: #ede9e0;
-    --text: #1a1a18;
-    --text-muted: #5a5a56;
-    --text-light: #9a9a94;
+    --primary: #1a1a1a;
+    --primary-light: #3a3a3a;
+    --primary-dark: #000000;
+    --primary-pale: #f0f0f0;
+    --primary-mid: #262626;
+    --bg: #f6f6f6;
+    --bg-dark: #e9e9e9;
+    --text: #111111;
+    --text-muted: #555555;
+    --text-light: #999999;
     --white: #ffffff;
-    --border: #d4cfc4;
+    --border: #d6d6d6;
     --radius: 12px;
     --radius-sm: 8px;
+    --gold: #c9a045;
+    --gold-light: #f0d27a;
+    --gold-dark: #8a6a24;
+    --gold-gradient: linear-gradient(135deg, #a67c2e 0%, #f0d27a 50%, #b8892f 100%);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
     font-family: 'DM Sans', sans-serif;
-    background: var(--cream);
+    background: var(--bg);
     color: var(--text);
     min-height: 100vh;
     overflow-x: hidden;
@@ -39,11 +44,11 @@
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 100;
-    background: rgba(247,245,240,0.92);
+    background: rgba(0,0,0,0.94);
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid rgba(201,160,69,0.45);
     padding: 0 2rem;
-    height: 64px;
+    height: 72px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -58,14 +63,20 @@
   .nav-logo .scissors-icon {
     width: 32px;
     height: 32px;
-    color: var(--green);
+    color: var(--white);
+  }
+
+  .nav-logo-img {
+    height: 56px;
+    width: auto;
+    display: block;
   }
 
   .nav-brand {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 22px;
     letter-spacing: 2px;
-    color: var(--green-dark);
+    color: var(--white);
     line-height: 1;
   }
 
@@ -74,7 +85,7 @@
     font-family: 'DM Mono', monospace;
     font-size: 9px;
     letter-spacing: 4px;
-    color: var(--green);
+    color: rgba(255,255,255,0.7);
     font-weight: 400;
     margin-top: 1px;
   }
@@ -87,25 +98,25 @@
 
   .nav-links a {
     text-decoration: none;
-    color: var(--text-muted);
+    color: rgba(255,255,255,0.7);
     font-size: 14px;
     font-weight: 400;
     letter-spacing: 0.3px;
     transition: color 0.2s;
   }
 
-  .nav-links a:hover { color: var(--green); }
+  .nav-links a:hover { color: var(--gold-light); }
 
   .nav-cta {
-    background: var(--green);
-    color: var(--white) !important;
+    background: var(--gold-gradient);
+    color: var(--primary-dark) !important;
     padding: 8px 20px !important;
     border-radius: 40px;
     font-weight: 500 !important;
-    transition: background 0.2s !important;
+    transition: filter 0.2s !important;
   }
 
-  .nav-cta:hover { background: var(--green-dark) !important; color: var(--white) !important; }
+  .nav-cta:hover { filter: brightness(1.1); color: var(--primary-dark) !important; }
 
   /* HERO */
   .hero {
@@ -122,8 +133,8 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    background: var(--green-pale);
-    color: var(--green-dark);
+    background: var(--primary-pale);
+    color: var(--primary-dark);
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 2px;
@@ -131,13 +142,13 @@
     padding: 6px 14px;
     border-radius: 40px;
     margin-bottom: 1.5rem;
-    border: 1px solid rgba(74,103,65,0.2);
+    border: 1px solid rgba(201,160,69,0.5);
   }
 
   .hero-tag::before {
     content: '';
     width: 6px; height: 6px;
-    background: var(--green);
+    background: var(--gold);
     border-radius: 50%;
     display: inline-block;
   }
@@ -147,13 +158,14 @@
     font-size: 72px;
     line-height: 0.92;
     letter-spacing: 2px;
-    color: var(--green-dark);
+    color: var(--primary-dark);
     margin-bottom: 1.5rem;
   }
 
   .hero h1 em {
     font-style: normal;
-    color: var(--green);
+    color: transparent;
+    -webkit-text-stroke: 2px var(--gold);
     display: block;
   }
 
@@ -172,7 +184,7 @@
   }
 
   .btn-primary {
-    background: var(--green);
+    background: var(--primary);
     color: var(--white);
     border: none;
     padding: 14px 32px;
@@ -185,12 +197,12 @@
     display: inline-block;
   }
 
-  .btn-primary:hover { background: var(--green-dark); transform: translateY(-1px); }
+  .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
 
   .btn-outline {
     background: transparent;
-    color: var(--green-dark);
-    border: 1.5px solid var(--green);
+    color: var(--primary-dark);
+    border: 1.5px solid var(--primary);
     padding: 14px 28px;
     border-radius: 40px;
     font-size: 15px;
@@ -200,7 +212,7 @@
     text-decoration: none;
   }
 
-  .btn-outline:hover { background: var(--green-pale); }
+  .btn-outline:hover { background: var(--primary-pale); }
 
   /* HERO CARD */
   .hero-visual {
@@ -212,7 +224,7 @@
     border-radius: var(--radius);
     border: 1px solid var(--border);
     padding: 1.5rem;
-    box-shadow: 0 4px 24px rgba(46,63,44,0.08);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
   }
 
   .hours-card h3 {
@@ -230,7 +242,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 0;
-    border-bottom: 1px solid var(--cream-dark);
+    border-bottom: 1px solid var(--bg-dark);
     font-size: 14px;
   }
 
@@ -245,7 +257,7 @@
   .day-hours {
     font-family: 'DM Mono', monospace;
     font-size: 13px;
-    color: var(--green-dark);
+    color: var(--primary-dark);
     font-weight: 500;
   }
 
@@ -263,12 +275,12 @@
   }
 
   .status-open {
-    background: var(--green-pale);
-    color: var(--green-dark);
+    background: var(--primary-pale);
+    color: var(--primary-dark);
   }
 
   .status-closed {
-    background: var(--cream-dark);
+    background: var(--bg-dark);
     color: var(--text-light);
   }
 
@@ -284,7 +296,7 @@
     font-size: 11px;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: var(--green);
+    color: var(--gold-dark);
     margin-bottom: 0.5rem;
   }
 
@@ -292,7 +304,7 @@
     font-family: 'Bebas Neue', sans-serif;
     font-size: 48px;
     letter-spacing: 2px;
-    color: var(--green-dark);
+    color: var(--primary-dark);
     margin-bottom: 2.5rem;
   }
 
@@ -320,27 +332,27 @@
     top: 0; left: 0;
     width: 4px;
     height: 0;
-    background: var(--green);
+    background: var(--gold-gradient);
     border-radius: 0 0 4px 0;
     transition: height 0.3s;
   }
 
   .barber-card:hover::before { height: 100%; }
-  .barber-card:hover { border-color: var(--green); box-shadow: 0 4px 24px rgba(46,63,44,0.1); }
+  .barber-card:hover { border-color: var(--primary); box-shadow: 0 4px 24px rgba(0,0,0,0.1); }
 
   .barber-avatar {
     width: 64px;
     height: 64px;
     border-radius: 50%;
-    background: var(--green-pale);
-    border: 2px solid var(--green);
+    background: var(--primary-pale);
+    border: 2px solid var(--gold);
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: 'Bebas Neue', sans-serif;
     font-size: 22px;
     letter-spacing: 1px;
-    color: var(--green-dark);
+    color: var(--primary-dark);
     margin-bottom: 1rem;
   }
 
@@ -354,7 +366,7 @@
   .barber-nick {
     font-family: 'DM Mono', monospace;
     font-size: 12px;
-    color: var(--green);
+    color: var(--primary);
     letter-spacing: 1px;
   }
 
@@ -378,14 +390,14 @@
   }
 
   .service-card:hover {
-    border-color: var(--green);
-    background: var(--green-pale);
+    border-color: var(--primary);
+    background: var(--primary-pale);
   }
 
   .service-card.selected {
-    border-color: var(--green);
-    background: var(--green-pale);
-    box-shadow: 0 0 0 2px var(--green);
+    border-color: var(--primary);
+    background: var(--primary-pale);
+    box-shadow: 0 0 0 2px var(--primary);
   }
 
   .service-name {
@@ -395,11 +407,17 @@
     margin-bottom: 2px;
   }
 
+  .service-duration {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--text-light);
+  }
+
   .service-price {
     font-family: 'DM Mono', monospace;
     font-size: 16px;
     font-weight: 500;
-    color: var(--green-dark);
+    color: var(--primary-dark);
   }
 
   /* BOOKING SECTION */
@@ -408,11 +426,11 @@
     border-radius: 20px;
     border: 1px solid var(--border);
     overflow: hidden;
-    box-shadow: 0 8px 40px rgba(46,63,44,0.08);
+    box-shadow: 0 8px 40px rgba(0,0,0,0.08);
   }
 
   .booking-header {
-    background: var(--green-dark);
+    background: var(--primary-dark);
     padding: 2rem 2.5rem;
     color: var(--white);
     display: flex;
@@ -445,7 +463,7 @@
     transition: all 0.3s;
   }
 
-  .step-dot.active { background: var(--white); width: 24px; border-radius: 4px; }
+  .step-dot.active { background: var(--gold-light); width: 24px; border-radius: 4px; }
 
   .booking-body {
     padding: 2.5rem;
@@ -484,14 +502,14 @@
     padding: 12px 16px;
     border: 1.5px solid var(--border);
     border-radius: var(--radius-sm);
-    background: var(--cream);
+    background: var(--bg);
     color: var(--text);
     transition: border 0.2s;
     outline: none;
     width: 100%;
   }
 
-  input:focus, select:focus { border-color: var(--green); background: var(--white); }
+  input:focus, select:focus { border-color: var(--primary); background: var(--white); }
 
   .barber-select-grid {
     display: grid;
@@ -512,23 +530,23 @@
     gap: 12px;
   }
 
-  .barber-option:hover { border-color: var(--green); background: var(--green-pale); }
-  .barber-option.selected { border-color: var(--green); background: var(--green-pale); box-shadow: 0 0 0 2px var(--green); }
+  .barber-option:hover { border-color: var(--primary); background: var(--primary-pale); }
+  .barber-option.selected { border-color: var(--primary); background: var(--primary-pale); box-shadow: 0 0 0 2px var(--primary); }
 
   .barber-option .mini-avatar {
     width: 40px; height: 40px;
     border-radius: 50%;
-    background: var(--green-pale);
-    border: 2px solid var(--green);
+    background: var(--primary-pale);
+    border: 2px solid var(--gold);
     display: flex; align-items: center; justify-content: center;
     font-family: 'Bebas Neue', sans-serif;
     font-size: 14px;
-    color: var(--green-dark);
+    color: var(--primary-dark);
     flex-shrink: 0;
   }
 
   .barber-option .mini-name { font-size: 14px; font-weight: 500; color: var(--text); }
-  .barber-option .mini-nick { font-size: 11px; color: var(--green); font-family: 'DM Mono', monospace; }
+  .barber-option .mini-nick { font-size: 11px; color: var(--primary); font-family: 'DM Mono', monospace; }
 
   /* TIME SLOTS */
   .time-grid {
@@ -550,10 +568,10 @@
     color: var(--text);
   }
 
-  .time-slot:hover { border-color: var(--green); background: var(--green-pale); }
-  .time-slot.selected { border-color: var(--green); background: var(--green); color: var(--white); }
-  .time-slot.disabled { opacity: 0.35; cursor: not-allowed; background: var(--cream-dark); }
-  .time-slot.disabled:hover { border-color: var(--border); background: var(--cream-dark); }
+  .time-slot:hover { border-color: var(--primary); background: var(--primary-pale); }
+  .time-slot.selected { border-color: var(--gold); background: var(--primary); color: var(--white); }
+  .time-slot.disabled { opacity: 0.35; cursor: not-allowed; background: var(--bg-dark); }
+  .time-slot.disabled:hover { border-color: var(--border); background: var(--bg-dark); }
 
   /* SERVICE MINI LIST */
   .service-mini-grid {
@@ -574,15 +592,15 @@
     align-items: center;
   }
 
-  .service-mini:hover { border-color: var(--green); background: var(--green-pale); }
-  .service-mini.selected { border-color: var(--green); background: var(--green); }
+  .service-mini:hover { border-color: var(--primary); background: var(--primary-pale); }
+  .service-mini.selected { border-color: var(--primary); background: var(--primary); }
   .service-mini.selected .s-name, .service-mini.selected .s-price { color: var(--white); }
   .s-name { font-size: 13px; font-weight: 500; color: var(--text); }
-  .s-price { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--green-dark); }
+  .s-price { font-family: 'DM Mono', monospace; font-size: 12px; color: var(--primary-dark); }
 
   /* SUMMARY */
   .summary-box {
-    background: var(--cream);
+    background: var(--bg);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     padding: 1.5rem;
@@ -600,7 +618,7 @@
   .summary-row:last-child { border-bottom: none; }
   .summary-label { color: var(--text-muted); }
   .summary-value { font-weight: 500; color: var(--text); }
-  .summary-total { font-size: 18px; font-weight: 600; color: var(--green-dark); }
+  .summary-total { font-size: 18px; font-weight: 600; color: var(--primary-dark); }
 
   /* CALENDAR */
   .calendar-wrapper {
@@ -611,7 +629,7 @@
   }
 
   .cal-header {
-    background: var(--green-dark);
+    background: var(--primary-dark);
     color: var(--white);
     padding: 12px 16px;
     display: flex;
@@ -646,7 +664,7 @@
     color: var(--text-light);
     padding: 8px 0;
     font-family: 'DM Mono', monospace;
-    background: var(--cream);
+    background: var(--bg);
     border-bottom: 1px solid var(--border);
   }
 
@@ -660,11 +678,11 @@
     color: var(--text);
   }
 
-  .cal-day:hover:not(.disabled):not(.empty) { background: var(--green-pale); color: var(--green-dark); }
-  .cal-day.selected { background: var(--green) !important; color: var(--white) !important; border-radius: 4px; }
-  .cal-day.disabled { color: var(--text-light); cursor: not-allowed; background: var(--cream-dark); }
+  .cal-day:hover:not(.disabled):not(.empty) { background: var(--primary-pale); color: var(--primary-dark); }
+  .cal-day.selected { background: var(--primary) !important; color: var(--white) !important; border-radius: 4px; }
+  .cal-day.disabled { color: var(--text-light); cursor: not-allowed; background: var(--bg-dark); }
   .cal-day.empty { cursor: default; }
-  .cal-day.today { font-weight: 600; color: var(--green); }
+  .cal-day.today { font-weight: 600; color: var(--gold-dark); }
 
   /* NAV STEPS */
   .step-nav {
@@ -688,10 +706,10 @@
     font-family: 'DM Sans', sans-serif;
   }
 
-  .btn-back:hover { border-color: var(--green); color: var(--green); }
+  .btn-back:hover { border-color: var(--primary); color: var(--primary); }
 
   .btn-next {
-    background: var(--green);
+    background: var(--primary);
     color: var(--white);
     border: none;
     padding: 12px 28px;
@@ -703,7 +721,7 @@
     font-family: 'DM Sans', sans-serif;
   }
 
-  .btn-next:hover { background: var(--green-dark); }
+  .btn-next:hover { background: var(--primary-dark); }
   .btn-next:disabled { opacity: 0.4; cursor: not-allowed; }
 
   /* SUCCESS */
@@ -716,8 +734,8 @@
   .success-icon {
     width: 72px;
     height: 72px;
-    background: var(--green-pale);
-    border: 3px solid var(--green);
+    background: var(--primary-pale);
+    border: 3px solid var(--gold);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -728,10 +746,11 @@
 
   /* FOOTER */
   footer {
-    background: var(--green-dark);
+    background: var(--primary-dark);
     color: rgba(255,255,255,0.7);
     padding: 3rem 2rem;
     margin-top: 6rem;
+    border-top: 2px solid var(--gold);
   }
 
   .footer-inner {
@@ -746,7 +765,7 @@
     font-family: 'Bebas Neue', sans-serif;
     font-size: 28px;
     letter-spacing: 2px;
-    color: var(--white);
+    color: var(--gold-light);
   }
 
   .footer-info {
@@ -755,11 +774,14 @@
     line-height: 1.8;
   }
 
+  .footer-info a { color: rgba(255,255,255,0.85); text-decoration: none; }
+  .footer-info a:hover { color: var(--gold-light); }
+
   /* SECTION DIVIDER */
   .divider {
     width: 48px;
     height: 3px;
-    background: var(--green);
+    background: var(--gold-gradient);
     border-radius: 2px;
     margin-bottom: 2rem;
   }
@@ -769,7 +791,7 @@
     position: fixed;
     bottom: 2rem;
     right: 2rem;
-    background: var(--green-dark);
+    background: var(--primary-dark);
     color: var(--white);
     padding: 14px 22px;
     border-radius: var(--radius);
@@ -801,13 +823,14 @@
 <!-- NAV -->
 <nav>
   <div class="nav-logo">
-    <svg class="scissors-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <img class="nav-logo-img" id="cfg-logo" alt="" style="display:none;">
+    <svg class="scissors-icon" id="cfg-logo-icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
       <circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/>
       <line x1="20" y1="4" x2="8.12" y2="15.88"/>
       <line x1="14.47" y1="14.48" x2="20" y2="20"/>
       <line x1="8.12" y1="8.12" x2="12" y2="12"/>
     </svg>
-    <div class="nav-brand">Na Risca<span>Studio</span></div>
+    <div class="nav-brand" id="cfg-marca"></div>
   </div>
   <ul class="nav-links">
     <li><a href="#horarios">Horários</a></li>
@@ -820,9 +843,9 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-content">
-    <div class="hero-tag">Barbearia Premium</div>
-    <h1>Estilo<em>Na Risca.</em></h1>
-    <p>Cortes precisos, atendimento personalizado e a experiência que você merece. Agende agora com os melhores barbeiros.</p>
+    <div class="hero-tag" id="cfg-hero-tag"></div>
+    <h1 id="cfg-hero-titulo"></h1>
+    <p id="cfg-hero-texto"></p>
     <div class="hero-actions">
       <a href="#agendar" class="btn-primary">Agendar Agora</a>
       <a href="#servicos" class="btn-outline">Ver Serviços</a>
@@ -832,41 +855,7 @@
   <div class="hero-visual" id="horarios">
     <div class="hours-card">
       <h3>Horários de Funcionamento</h3>
-      <div class="hours-row">
-        <span class="day-name">Segunda</span>
-        <span class="day-closed">Fechado</span>
-        <span class="status-badge status-closed">Fechado</span>
-      </div>
-      <div class="hours-row">
-        <span class="day-name">Terça</span>
-        <span class="day-hours">10:00 – 19:00</span>
-        <span class="status-badge status-open" id="badge-terca">—</span>
-      </div>
-      <div class="hours-row">
-        <span class="day-name">Quarta</span>
-        <span class="day-hours">10:00 – 19:00</span>
-        <span class="status-badge status-open" id="badge-quarta">—</span>
-      </div>
-      <div class="hours-row">
-        <span class="day-name">Quinta</span>
-        <span class="day-hours">10:00 – 21:45</span>
-        <span class="status-badge status-open" id="badge-quinta">—</span>
-      </div>
-      <div class="hours-row">
-        <span class="day-name">Sexta</span>
-        <span class="day-hours">10:00 – 21:45</span>
-        <span class="status-badge status-open" id="badge-sexta">—</span>
-      </div>
-      <div class="hours-row">
-        <span class="day-name">Sábado</span>
-        <span class="day-hours">10:00 – 18:00</span>
-        <span class="status-badge status-open" id="badge-sabado">—</span>
-      </div>
-      <div class="hours-row">
-        <span class="day-name">Domingo</span>
-        <span class="day-closed">Fechado</span>
-        <span class="status-badge status-closed">Fechado</span>
-      </div>
+      <div id="cfg-horarios"></div>
     </div>
   </div>
 </section>
@@ -876,13 +865,7 @@
   <div class="section-label">Nossos Profissionais</div>
   <div class="section-title">Os Barbeiros</div>
   <div class="divider"></div>
-  <div class="barbers-grid">
-    <div class="barber-card">
-      <div class="barber-avatar">PV</div>
-      <div class="barber-name">Pedro Vitor</div>
-      <div class="barber-nick">// PV</div>
-    </div>
-  </div>
+  <div class="barbers-grid" id="cfg-barbeiros"></div>
 </section>
 
 <!-- SERVICES -->
@@ -890,19 +873,7 @@
   <div class="section-label">Tabela de Preços</div>
   <div class="section-title">Serviços</div>
   <div class="divider"></div>
-  <div class="services-grid">
-    <div class="service-card"><div><div class="service-name">Corte Simples</div></div><div class="service-price">R$ 20</div></div>
-    <div class="service-card"><div><div class="service-name">Corte Disfarçado (Máquina)</div></div><div class="service-price">R$ 40</div></div>
-    <div class="service-card"><div><div class="service-name">Corte Tesoura</div></div><div class="service-price">R$ 45</div></div>
-    <div class="service-card"><div><div class="service-name">Barba</div></div><div class="service-price">R$ 20</div></div>
-    <div class="service-card"><div><div class="service-name">Cavanhaque</div></div><div class="service-price">R$ 15</div></div>
-    <div class="service-card"><div><div class="service-name">Pezinho</div></div><div class="service-price">R$ 15</div></div>
-    <div class="service-card"><div><div class="service-name">Pigmentação</div></div><div class="service-price">R$ 15</div></div>
-    <div class="service-card"><div><div class="service-name">Reflexo</div></div><div class="service-price">R$ 50</div></div>
-    <div class="service-card"><div><div class="service-name">Nevou</div></div><div class="service-price">R$ 60</div></div>
-    <div class="service-card"><div><div class="service-name">Colorido</div></div><div class="service-price">R$ 65</div></div>
-    <div class="service-card"><div><div class="service-name">Alinhamento de Fios</div></div><div class="service-price">R$ 30</div></div>
-  </div>
+  <div class="services-grid" id="cfg-servicos"></div>
 </section>
 
 <!-- BOOKING -->
@@ -930,12 +901,7 @@
       <!-- Step 1: Barber -->
       <div class="step-panel active" id="step-1">
         <p style="font-size:14px; color: var(--text-muted); margin-bottom: 1.5rem;">Selecione com quem você prefere ser atendido:</p>
-        <div class="barber-select-grid">
-          <div class="barber-option" onclick="selectBarber(this, 'Pedro Vitor (PV)')">
-            <div class="mini-avatar">PV</div>
-            <div><div class="mini-name">Pedro Vitor</div><div class="mini-nick">// PV</div></div>
-          </div>
-        </div>
+        <div class="barber-select-grid" id="cfg-barbeiros-opcoes"></div>
         <div class="step-nav">
           <div></div>
           <button class="btn-next" id="next-1" onclick="goStep(2)" disabled>Próximo →</button>
@@ -946,9 +912,9 @@
       <div class="step-panel" id="step-2">
         <p style="font-size:14px; color: var(--text-muted); margin-bottom: 1.5rem;">Selecione um ou mais serviços desejados:</p>
         <div class="service-mini-grid" id="services-list"></div>
-        <div style="background: var(--green-pale); border-radius: var(--radius-sm); padding: 12px 16px; font-family: 'DM Mono', monospace; font-size: 13px; display: flex; justify-content: space-between;">
+        <div style="background: var(--primary-pale); border-radius: var(--radius-sm); padding: 12px 16px; font-family: 'DM Mono', monospace; font-size: 13px; display: flex; justify-content: space-between;">
           <span style="color: var(--text-muted);">Total estimado:</span>
-          <span style="color: var(--green-dark); font-weight: 600;" id="total-display">R$ 0</span>
+          <span style="color: var(--primary-dark); font-weight: 600;" id="total-display">R$ 0</span>
         </div>
         <div class="step-nav">
           <button class="btn-back" onclick="goStep(1)">← Voltar</button>
@@ -1017,7 +983,7 @@
     <!-- Success -->
     <div class="success-screen" id="success-screen">
       <div class="success-icon">✓</div>
-      <h2 style="font-family: 'Bebas Neue'; font-size: 36px; letter-spacing: 2px; color: var(--green-dark); margin-bottom: 8px;">Agendado!</h2>
+      <h2 style="font-family: 'Bebas Neue'; font-size: 36px; letter-spacing: 2px; color: var(--primary-dark); margin-bottom: 8px;">Agendado!</h2>
       <p style="color: var(--text-muted); font-size: 15px; margin-bottom: 2rem; max-width: 400px; margin-left: auto; margin-right: auto;">O WhatsApp foi aberto com os dados do seu agendamento. Envie a mensagem para confirmar com a barbearia! 💬</p>
       <div class="summary-box" id="success-summary" style="max-width: 400px; margin: 0 auto 2rem;"></div>
       <button class="btn-primary" onclick="resetBooking()">Fazer Novo Agendamento</button>
@@ -1030,13 +996,14 @@
 <footer>
   <div class="footer-inner">
     <div>
-      <div class="footer-brand">Na Risca Studio</div>
-      <p style="font-size: 13px; margin-top: 6px; color: rgba(255,255,255,0.5);">Estilo e precisão em cada corte.</p>
+      <div class="footer-brand cfg-nome"></div>
+      <p style="font-size: 13px; margin-top: 6px; color: rgba(255,255,255,0.5);" id="cfg-slogan"></p>
     </div>
     <div class="footer-info">
-      <div>Ter – Sex: 10h às 21h (Ter até 19h)</div>
-      <div>Sábado: 10h às 18h</div>
-      <div style="margin-top: 8px; color: rgba(255,255,255,0.4);">© 2025 Na Risca Studio</div>
+      <div id="cfg-rodape-horarios"></div>
+      <div id="cfg-endereco" style="margin-top: 8px;"></div>
+      <div id="cfg-redes"></div>
+      <div style="margin-top: 8px; color: rgba(255,255,255,0.4);" id="cfg-copyright"></div>
     </div>
   </div>
 </footer>
@@ -1044,53 +1011,228 @@
 <div class="notif" id="notif"></div>
 
 <script>
-const SERVICES = [
-  { name: 'Corte Simples', price: 20 },
-  { name: 'Corte Disfarçado (Máquina)', price: 40 },
-  { name: 'Corte Tesoura', price: 45 },
-  { name: 'Barba', price: 20 },
-  { name: 'Cavanhaque', price: 15 },
-  { name: 'Pezinho', price: 15 },
-  { name: 'Pigmentação', price: 15 },
-  { name: 'Reflexo', price: 50 },
-  { name: 'Nevou', price: 60 },
-  { name: 'Colorido', price: 65 },
-  { name: 'Alinhamento de Fios', price: 30 },
+// ══ CONFIGURAÇÃO DO ESTABELECIMENTO ══════════════════════
+// Tudo que é específico do cliente fica aqui. O resto do site lê deste objeto.
+const CONFIG = {
+  nome: 'Studio 97 Barbearia',               // nome completo (título, rodapé, admin, WhatsApp)
+  logo: 'logo-horizontal.png',               // imagem do menu; deixe '' para usar tesoura + marca em texto
+  marca: { linha1: 'Studio 97', linha2: 'Barbearia' }, // texto do menu quando não há logo
+  slogan: 'Mais que um corte, uma experiência para seu estilo.', // frase do rodapé
+
+  hero: {
+    tag: 'Barbearia Premium',
+    titulo: 'Estilo',                        // primeira linha do título grande
+    destaque: 'Studio 97.',                  // segunda linha, em contorno
+    texto: 'Cortes precisos, atendimento personalizado e a experiência que você merece. Agende agora com os melhores barbeiros.',
+  },
+
+  whatsapp: '5521995719475',                 // só números, com 55 + DDD
+  endereco: 'Rua Alesia dos Santos, Lote 4, s/nº',
+  redes: {                                   // URL completa; deixe '' para ocultar
+    instagram: 'https://www.instagram.com/sstudiomuniz97/',
+    facebook: '',
+    tiktok: '',
+  },
+
+  // O texto "Nome (INICIAIS)" é o que fica gravado no banco — não mude depois de ter agendamentos.
+  barbeiros: [
+    { nome: 'Ricardo Muniz', iniciais: 'FADE' },
+  ],
+
+  // duracao em minutos (informativa, exibida nos cards); null = não informada
+  servicos: [
+    { nome: 'Corte Disfarçado', preco: 30, duracao: 30 },
+    { nome: 'Barba', preco: 15, duracao: 20 },
+    { nome: 'Corte + Pigmentação', preco: 40, duracao: 40 },
+  ],
+
+  // ultimoHorario = início do último atendimento do dia.
+  // fechamento (opcional) = horário exibido no site e usado no "Aberto/Fechado";
+  // se omitido, vale ultimoHorario + intervaloMinutos.
+  intervaloMinutos: 30,
+  horarios: {
+    segunda: { fechado: true },
+    terca:   { fechado: false, abertura: '09:00', ultimoHorario: '18:30', fechamento: '19:00' },
+    quarta:  { fechado: false, abertura: '09:00', ultimoHorario: '18:30', fechamento: '19:00' },
+    quinta:  { fechado: false, abertura: '09:00', ultimoHorario: '18:30', fechamento: '19:00' },
+    sexta:   { fechado: false, abertura: '09:00', ultimoHorario: '19:30', fechamento: '20:00' },
+    sabado:  { fechado: false, abertura: '09:00', ultimoHorario: '17:30', fechamento: '18:00' },
+    domingo: { fechado: true },
+  },
+};
+
+// Índice = Date.getDay() (0 = domingo)
+const DIAS_SEMANA = [
+  { chave: 'domingo', nome: 'Domingo', curto: 'Dom' },
+  { chave: 'segunda', nome: 'Segunda', curto: 'Seg' },
+  { chave: 'terca',   nome: 'Terça',   curto: 'Ter' },
+  { chave: 'quarta',  nome: 'Quarta',  curto: 'Qua' },
+  { chave: 'quinta',  nome: 'Quinta',  curto: 'Qui' },
+  { chave: 'sexta',   nome: 'Sexta',   curto: 'Sex' },
+  { chave: 'sabado',  nome: 'Sábado',  curto: 'Sáb' },
 ];
+const ORDEM_EXIBICAO = [1, 2, 3, 4, 5, 6, 0]; // segunda → domingo
+
+const esc = v => String(v).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+const toMin = t => { const [h, m] = t.split(':').map(Number); return h * 60 + m; };
+const toHHMM = m => `${String(Math.floor(m / 60)).padStart(2,'0')}:${String(m % 60).padStart(2,'0')}`;
+const horaCurta = m => `${Math.floor(m / 60)}h${m % 60 ? String(m % 60).padStart(2,'0') : ''}`;
+
+function horarioDoDia(dow) { return CONFIG.horarios[DIAS_SEMANA[dow].chave] || { fechado: true }; }
+function diaFechado(dow) { return !!horarioDoDia(dow).fechado; }
+function aberturaMin(dow) { return toMin(horarioDoDia(dow).abertura); }
+function fechamentoMin(dow) {
+  const h = horarioDoDia(dow);
+  return h.fechamento ? toMin(h.fechamento) : toMin(h.ultimoHorario) + CONFIG.intervaloMinutos;
+}
+
+function slotsDoDia(dow) {
+  if (diaFechado(dow)) return [];
+  const slots = [];
+  const ultimo = toMin(horarioDoDia(dow).ultimoHorario);
+  for (let m = aberturaMin(dow); m <= ultimo; m += CONFIG.intervaloMinutos) slots.push(toHHMM(m));
+  return slots;
+}
+
+function rotuloBarbeiro(b) { return `${b.nome} (${b.iniciais})`; }
+function iniciaisDoBarbeiro(rotulo) {
+  const b = CONFIG.barbeiros.find(x => rotuloBarbeiro(x) === rotulo);
+  if (b) return b.iniciais;
+  const m = /\(([^)]+)\)\s*$/.exec(rotulo || '');
+  return m ? m[1] : '—';
+}
+
+const SERVICES = CONFIG.servicos.map(s => ({ name: s.nome, price: s.preco }));
 
 const STEP_TITLES = ['Escolha o Barbeiro', 'Selecione o Serviço', 'Data & Horário', 'Confirmar'];
 let booking = { barber: '', services: [], date: null, time: '', total: 0 };
 let calYear, calMonth;
 
-// Init
-(function() {
+// Init (espera o HTML inteiro, pois o painel admin fica depois deste script)
+document.addEventListener('DOMContentLoaded', () => {
   const now = new Date();
   calYear = now.getFullYear();
   calMonth = now.getMonth();
+  renderConfig();
   buildServiceList();
   renderCalendar();
-  updateStatusBadges();
-})();
+});
 
-function updateStatusBadges() {
-  const now = new Date();
-  const day = now.getDay(); // 0=Sun,1=Mon,...6=Sat
-  const h = now.getHours() + now.getMinutes() / 60;
-  const days = ['badge-terca','badge-quarta','badge-quinta','badge-sexta','badge-sabado'];
-  const ends = [19, 19, 21.75, 21.75, 18];
-  const dayMap = [null, null, 0, 1, 2, 3, 4]; // day index in days array
-  days.forEach((id, i) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    const isToday = dayMap[day] === i;
-    if (isToday && h >= 10 && h < ends[i]) {
-      el.textContent = 'Aberto';
-      el.className = 'status-badge status-open';
-    } else {
-      el.textContent = 'Fechado';
-      el.className = 'status-badge status-closed';
-    }
+function renderConfig() {
+  document.title = `${CONFIG.nome} — Agendamento`;
+  document.querySelectorAll('.cfg-nome').forEach(el => el.textContent = CONFIG.nome);
+  const marca = document.getElementById('cfg-marca');
+  if (CONFIG.logo) {
+    const logo = document.getElementById('cfg-logo');
+    logo.src = CONFIG.logo;
+    logo.alt = CONFIG.nome;
+    logo.style.display = 'block';
+    document.getElementById('cfg-logo-icone').style.display = 'none';
+    marca.style.display = 'none';
+  } else {
+    marca.innerHTML = `${esc(CONFIG.marca.linha1)}<span>${esc(CONFIG.marca.linha2)}</span>`;
+  }
+  document.getElementById('cfg-hero-tag').textContent = CONFIG.hero.tag;
+  document.getElementById('cfg-hero-titulo').innerHTML = `${esc(CONFIG.hero.titulo)}<em>${esc(CONFIG.hero.destaque)}</em>`;
+  document.getElementById('cfg-hero-texto').textContent = CONFIG.hero.texto;
+  document.getElementById('cfg-slogan').textContent = CONFIG.slogan;
+  document.getElementById('cfg-copyright').textContent = `© ${new Date().getFullYear()} ${CONFIG.nome}`;
+  document.getElementById('cfg-endereco').textContent = CONFIG.endereco;
+
+  const redes = [['instagram', 'Instagram'], ['facebook', 'Facebook'], ['tiktok', 'TikTok']]
+    .filter(([k]) => CONFIG.redes[k])
+    .map(([k, label]) => /^https?:\/\//.test(CONFIG.redes[k])
+      ? `<a href="${esc(CONFIG.redes[k])}" target="_blank" rel="noopener noreferrer">${label}</a>`
+      : `<span>${label}: ${esc(CONFIG.redes[k])}</span>`);
+  document.getElementById('cfg-redes').innerHTML = redes.join(' · ');
+
+  renderHorariosCard();
+  renderRodapeHorarios();
+
+  // Barbeiros: seção pública, passo 1 do agendamento e selects do admin
+  document.getElementById('cfg-barbeiros').innerHTML = CONFIG.barbeiros.map(b => `
+    <div class="barber-card">
+      <div class="barber-avatar">${esc(b.iniciais)}</div>
+      <div class="barber-name">${esc(b.nome)}</div>
+      <div class="barber-nick">// ${esc(b.iniciais)}</div>
+    </div>`).join('');
+
+  const opcoes = document.getElementById('cfg-barbeiros-opcoes');
+  opcoes.innerHTML = '';
+  CONFIG.barbeiros.forEach(b => {
+    const div = document.createElement('div');
+    div.className = 'barber-option';
+    div.innerHTML = `<div class="mini-avatar">${esc(b.iniciais)}</div>
+      <div><div class="mini-name">${esc(b.nome)}</div><div class="mini-nick">// ${esc(b.iniciais)}</div></div>`;
+    div.onclick = () => selectBarber(div, rotuloBarbeiro(b));
+    opcoes.appendChild(div);
   });
+
+  ['admin-filter-barber', 'm-barbeiro'].forEach(id => {
+    const sel = document.getElementById(id);
+    CONFIG.barbeiros.forEach(b => sel.add(new Option(rotuloBarbeiro(b), rotuloBarbeiro(b))));
+  });
+
+  // Serviços: tabela pública e select de mensalistas
+  document.getElementById('cfg-servicos').innerHTML = CONFIG.servicos.map(s =>
+    `<div class="service-card"><div><div class="service-name">${esc(s.nome)}</div>${s.duracao ? `<div class="service-duration">${esc(s.duracao)} min</div>` : ''}</div><div class="service-price">R$ ${esc(s.preco)}</div></div>`
+  ).join('');
+  const mServ = document.getElementById('m-servico');
+  CONFIG.servicos.forEach(s => mServ.add(new Option(s.nome, s.nome)));
+
+  preencherHorariosMensalista();
+}
+
+function renderHorariosCard() {
+  const now = new Date();
+  const hoje = now.getDay();
+  const agora = now.getHours() * 60 + now.getMinutes();
+  document.getElementById('cfg-horarios').innerHTML = ORDEM_EXIBICAO.map(dow => {
+    const dia = DIAS_SEMANA[dow];
+    if (diaFechado(dow)) {
+      return `<div class="hours-row">
+        <span class="day-name">${dia.nome}</span>
+        <span class="day-closed">Fechado</span>
+        <span class="status-badge status-closed">Fechado</span>
+      </div>`;
+    }
+    const aberto = dow === hoje && agora >= aberturaMin(dow) && agora < fechamentoMin(dow);
+    return `<div class="hours-row">
+      <span class="day-name">${dia.nome}</span>
+      <span class="day-hours">${toHHMM(aberturaMin(dow))} – ${toHHMM(fechamentoMin(dow))}</span>
+      <span class="status-badge ${aberto ? 'status-open' : 'status-closed'}">${aberto ? 'Aberto' : 'Fechado'}</span>
+    </div>`;
+  }).join('');
+}
+
+// Agrupa dias seguidos com o mesmo horário: "Ter – Qua: 10h às 19h"
+function renderRodapeHorarios() {
+  const grupos = [];
+  ORDEM_EXIBICAO.filter(dow => !diaFechado(dow)).forEach(dow => {
+    const faixa = `${horaCurta(aberturaMin(dow))} às ${horaCurta(fechamentoMin(dow))}`;
+    const ult = grupos[grupos.length - 1];
+    const seguido = ult && ORDEM_EXIBICAO.indexOf(dow) === ORDEM_EXIBICAO.indexOf(ult.fim) + 1;
+    if (ult && seguido && ult.faixa === faixa) ult.fim = dow;
+    else grupos.push({ inicio: dow, fim: dow, faixa });
+  });
+  document.getElementById('cfg-rodape-horarios').innerHTML = grupos.map(g => {
+    const dias = g.inicio === g.fim ? DIAS_SEMANA[g.inicio].nome : `${DIAS_SEMANA[g.inicio].curto} – ${DIAS_SEMANA[g.fim].curto}`;
+    return `<div>${dias}: ${g.faixa}</div>`;
+  }).join('');
+}
+
+// Horários do mensalista seguem o dia da semana da data escolhida;
+// sem data, lista todos os horários possíveis da semana.
+function preencherHorariosMensalista() {
+  const sel = document.getElementById('m-horario');
+  const data = document.getElementById('m-data').value;
+  const atual = sel.value;
+  const slots = data
+    ? slotsDoDia(new Date(data + 'T12:00:00').getDay())
+    : [...new Set(ORDEM_EXIBICAO.flatMap(slotsDoDia))].sort();
+  sel.length = 1; // mantém "— sem agendamento —"
+  slots.forEach(t => sel.add(new Option(t, t)));
+  if (slots.includes(atual)) sel.value = atual;
 }
 
 function selectBarber(el, name) {
@@ -1144,7 +1286,7 @@ function renderCalendar() {
     const date = new Date(calYear, calMonth, d);
     const dow = date.getDay();
     const isPast = date < new Date(today.getFullYear(), today.getMonth(), today.getDate());
-    const isClosed = dow === 0 || dow === 1; // Sun or Mon
+    const isClosed = diaFechado(dow);
     const cell = document.createElement('div');
     cell.className = 'cal-day';
     if (isPast || isClosed) cell.classList.add('disabled');
@@ -1169,7 +1311,7 @@ async function selectDate(cell, date) {
   cell.classList.add('selected');
 
   // Verifica dias bloqueados
-  const dateISO = date.toISOString().split('T')[0];
+  const dateISO = isoLocal(date);
   const bloqueados = await getDiasBloqueados();
   if (bloqueados.includes(dateISO)) {
     cell.classList.remove('selected');
@@ -1186,21 +1328,7 @@ async function selectDate(cell, date) {
 }
 
 async function renderTimeSlots(date) {
-  const dow = date.getDay();
-  let maxH = 22; // Quinta e Sexta: último slot 21:45
-  if (dow === 2) maxH = 19; // Terça
-  if (dow === 3) maxH = 19; // Quarta
-  if (dow === 6) maxH = 18; // Sábado
-
-  const slots = [];
-  let cur = 10 * 60; // começa às 10:00
-  const maxMins = maxH * 60;
-  while (cur < maxMins) {
-    const hh = Math.floor(cur / 60);
-    const mm = cur % 60;
-    slots.push(`${String(hh).padStart(2,'0')}:${String(mm).padStart(2,'0')}`);
-    cur += 45;
-  }
+  const slots = slotsDoDia(date.getDay());
 
   const now = new Date();
   const isToday = date.toDateString() === now.toDateString();
@@ -1210,7 +1338,7 @@ async function renderTimeSlots(date) {
   grid.innerHTML = '<div style="color:var(--text-muted);font-size:13px;padding:8px 0;">Verificando disponibilidade...</div>';
   booking.time = '';
 
-  const dateISO = date.toISOString().split('T')[0];
+  const dateISO = isoLocal(date);
   let bookedTimes = new Set();
   try {
     const booked = await sbFetchBooked(booking.barber, dateISO);
@@ -1273,54 +1401,116 @@ function formatPhone(input) {
 }
 
 // ── SUPABASE CONFIG ──────────────────────────────────────
-const SB_URL = 'https://jlyzkizmghykggkjhkkw.supabase.co';
-const SB_KEY = 'sb_publishable_z5q9LVBebgFW7nxpem5tLg_xJ0sOnTh';
+// Project Settings > API: "Project URL" e a chave pública (publishable ou anon).
+// Nunca coloque aqui a chave secret/service_role.
+const SB_URL = 'https://jwcmnqzhnhhmxxzvuygg.supabase.co';
+const SB_KEY = 'sb_publishable_M1WiM7izHGv6MVAMTz2aRw_eW5QnqAm';
 
-async function sbInsert(row) {
-  const res = await fetch(`${SB_URL}/rest/v1/agendamentos`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'apikey': SB_KEY,
-      'Authorization': `Bearer ${SB_KEY}`,
-      'Prefer': 'return=minimal'
-    },
-    body: JSON.stringify(row)
-  });
-  if (!res.ok) {
-    const err = await res.text();
-    throw new Error(err);
+// O admin entra com um nome de usuário; o Supabase Auth exige e-mail, então
+// "muniz" vira "muniz@studio97.local". Crie o usuário no Supabase com esse e-mail.
+const ADMIN_DOMINIO = 'studio97.local';
+function usuarioParaEmail(usuario) {
+  const u = usuario.trim().toLowerCase();
+  return u.includes('@') ? u : `${u}@${ADMIN_DOMINIO}`;
+}
+function emailParaUsuario(email) {
+  return (email || '').replace(`@${ADMIN_DOMINIO}`, '');
+}
+
+// Sessão do admin (Supabase Auth). Fica só em memória: recarregar a página pede login de novo.
+let adminSession = null;
+
+class SbError extends Error {
+  constructor(status, body) {
+    super((body && (body.message || body.error_description || body.msg)) || `HTTP ${status}`);
+    this.status = status;
+    this.code = body && body.code;
   }
 }
 
-async function sbFetch(filters = '') {
-  const res = await fetch(`${SB_URL}/rest/v1/agendamentos?order=data_agendamento.asc,horario.asc&status=neq.excluido${filters}&select=*`, {
-    headers: {
-      'apikey': SB_KEY,
-      'Authorization': `Bearer ${SB_KEY}`
-    }
+// Requisição REST. Público usa só o apikey (papel anon); admin envia o token do usuário.
+async function sb(path, { method = 'GET', body, admin = false, prefer } = {}) {
+  const headers = { 'apikey': SB_KEY };
+  if (admin) headers['Authorization'] = `Bearer ${await getAccessToken()}`;
+  if (body !== undefined) headers['Content-Type'] = 'application/json';
+  if (prefer) headers['Prefer'] = prefer;
+  const res = await fetch(`${SB_URL}${path}`, {
+    method, headers, body: body !== undefined ? JSON.stringify(body) : undefined
   });
-  return res.json();
+  const text = await res.text();
+  let data = null;
+  try { data = text ? JSON.parse(text) : null; } catch (e) { data = { message: text }; }
+  if (!res.ok) {
+    if (admin && res.status === 401) adminSessaoExpirada();
+    throw new SbError(res.status, data);
+  }
+  return data;
+}
+
+// Violação da restrição única (barbeiro, data, horário)
+const isHorarioOcupado = err => err && (err.status === 409 || err.code === '23505');
+
+async function sbInsert(row) {
+  await sb('/rest/v1/agendamentos', { method: 'POST', body: row, prefer: 'return=minimal' });
 }
 
 async function sbFetchBooked(barber, dateISO) {
-  const res = await fetch(
-    `${SB_URL}/rest/v1/agendamentos?barbeiro=eq.${encodeURIComponent(barber)}&data_agendamento=eq.${dateISO}&status=in.(confirmado,concluido)&select=horario`,
-    { headers: { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}` } }
-  );
-  return res.json();
+  return sb('/rest/v1/rpc/horarios_ocupados', { method: 'POST', body: { p_data: dateISO, p_barbeiro: barber } });
+}
+
+async function sbFetch(filters = '') {
+  return sb(`/rest/v1/agendamentos?order=data_agendamento.asc,horario.asc&status=neq.excluido${filters}&select=*`, { admin: true });
 }
 
 async function sbUpdateStatus(id, status) {
-  await fetch(`${SB_URL}/rest/v1/agendamentos?id=eq.${id}`, {
-    method: 'PATCH',
-    headers: {
-      'Content-Type': 'application/json',
-      'apikey': SB_KEY,
-      'Authorization': `Bearer ${SB_KEY}`
-    },
-    body: JSON.stringify({ status })
+  await sb(`/rest/v1/agendamentos?id=eq.${id}`, { method: 'PATCH', body: { status }, admin: true });
+}
+
+// ── SUPABASE AUTH ────────────────────────────────────────
+async function authToken(grantType, body) {
+  const res = await fetch(`${SB_URL}/auth/v1/token?grant_type=${grantType}`, {
+    method: 'POST',
+    headers: { 'apikey': SB_KEY, 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
   });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new SbError(res.status, data);
+  return {
+    access_token: data.access_token,
+    refresh_token: data.refresh_token,
+    expires_at: data.expires_at || Math.floor(Date.now() / 1000) + data.expires_in,
+    email: data.user && data.user.email,
+  };
+}
+
+// Renova o token 1 min antes de expirar
+async function getAccessToken() {
+  if (!adminSession) throw new SbError(401, { message: 'Faça login.' });
+  if (adminSession.expires_at - 60 < Date.now() / 1000) {
+    try {
+      adminSession = await authToken('refresh_token', { refresh_token: adminSession.refresh_token });
+    } catch (e) {
+      adminSessaoExpirada();
+      throw e;
+    }
+  }
+  return adminSession.access_token;
+}
+
+async function authLogout() {
+  if (!adminSession) return;
+  const token = adminSession.access_token;
+  adminSession = null;
+  try {
+    await fetch(`${SB_URL}/auth/v1/logout`, {
+      method: 'POST',
+      headers: { 'apikey': SB_KEY, 'Authorization': `Bearer ${token}` }
+    });
+  } catch (e) { /* a sessão local já foi descartada */ }
+}
+
+function isoLocal(date) {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
 }
 
 // ── CONFIRMAR AGENDAMENTO ────────────────────────────────
@@ -1336,7 +1526,7 @@ async function confirmarAgendamento(e) {
 
   const opts = { weekday: 'long', day: '2-digit', month: 'long', year: 'numeric' };
   const dateStr = booking.date ? booking.date.toLocaleDateString('pt-BR', opts) : '—';
-  const dateISO = booking.date ? booking.date.toISOString().split('T')[0] : '';
+  const dateISO = booking.date ? isoLocal(booking.date) : '';
 
   try {
     await sbInsert({
@@ -1350,10 +1540,18 @@ async function confirmarAgendamento(e) {
       status: 'confirmado'
     });
   } catch(err) {
-    showNotif('Erro ao salvar. Tente novamente.');
     btn.disabled = false;
     btn.textContent = 'Confirmar Agendamento ✓';
     console.error(err);
+    if (isHorarioOcupado(err)) {
+      // Outra pessoa reservou esse horário enquanto o cliente preenchia os dados
+      showNotif('Esse horário acabou de ser reservado. Escolha outro.');
+      goStep(3);
+      document.getElementById('next-3').disabled = true;
+      await renderTimeSlots(booking.date);
+    } else {
+      showNotif('Erro ao salvar. Tente novamente.');
+    }
     return;
   }
 
@@ -1363,7 +1561,7 @@ async function confirmarAgendamento(e) {
   document.getElementById('success-screen').style.display = 'block';
 
   document.getElementById('success-summary').innerHTML = `
-    <div class="summary-row"><span class="summary-label">Cliente</span><span class="summary-value">${name}</span></div>
+    <div class="summary-row"><span class="summary-label">Cliente</span><span class="summary-value">${esc(name)}</span></div>
     <div class="summary-row"><span class="summary-label">Barbeiro</span><span class="summary-value">${booking.barber}</span></div>
     <div class="summary-row"><span class="summary-label">Serviços</span><span class="summary-value">${booking.services.map(s=>s.name).join(', ')}</span></div>
     <div class="summary-row"><span class="summary-label">Data</span><span class="summary-value">${dateStr}</span></div>
@@ -1373,7 +1571,7 @@ async function confirmarAgendamento(e) {
   // Dispara WhatsApp
   const servicos = booking.services.map(s => `  • ${s.name} — R$ ${s.price}`).join('\n');
   const msg = [
-    '*Novo Agendamento - Na Risca Studio*',
+    `*Novo Agendamento - ${CONFIG.nome}*`,
     '',
     `*Cliente:* ${name}`,
     `*Telefone:* ${phone}`,
@@ -1386,10 +1584,10 @@ async function confirmarAgendamento(e) {
     `*Horário:* ${booking.time}`,
     `*Total:* R$ ${booking.total}`,
     '',
-    '_Agendamento via site Na Risca Studio._'
+    `_Agendamento via site ${CONFIG.nome}._`
   ].join('\n');
 
-  const waNumber = '5521986417957';
+  const waNumber = CONFIG.whatsapp.replace(/\D/g, '');
   const waURL = `https://api.whatsapp.com/send?phone=${waNumber}&text=${encodeURIComponent(msg)}`;
   const a = document.createElement('a');
   a.href = waURL;
@@ -1430,8 +1628,6 @@ function showNotif(msg) {
 
 
 // ── ADMIN PANEL ──────────────────────────────────────────
-const ADMIN_PASS = 'narisca2025';
-
 function switchAdminTab(tab) {
   document.querySelectorAll('.adm-tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.adm-panel').forEach(p => p.classList.remove('active'));
@@ -1439,35 +1635,56 @@ function switchAdminTab(tab) {
   document.getElementById('adm-panel-' + tab).classList.add('active');
 }
 
-function openAdmin() {
-  if (sessionStorage.getItem('admin_auth') === '1') {
-    document.getElementById('admin-overlay').style.display = 'block';
-    document.body.style.overflow = 'hidden';
-    adminLoad();
-    adminLoadMensalistas();
-    adminLoadDiasBloqueados();
-  } else {
-    document.getElementById('admin-login-overlay').style.display = 'flex';
-    document.getElementById('admin-pass-input').value = '';
-    document.getElementById('admin-login-error').style.display = 'none';
-    setTimeout(() => document.getElementById('admin-pass-input').focus(), 50);
-  }
+function mostrarPainelAdmin() {
+  document.getElementById('admin-login-overlay').style.display = 'none';
+  document.getElementById('admin-overlay').style.display = 'block';
+  document.getElementById('admin-user-email').textContent = emailParaUsuario(adminSession.email);
+  document.body.style.overflow = 'hidden';
+  adminLoad();
+  adminLoadMensalistas();
+  adminLoadDiasBloqueados();
 }
 
-function submitAdminLogin() {
-  const val = document.getElementById('admin-pass-input').value;
-  if (val === ADMIN_PASS) {
-    sessionStorage.setItem('admin_auth', '1');
-    document.getElementById('admin-login-overlay').style.display = 'none';
-    document.getElementById('admin-overlay').style.display = 'block';
-    document.body.style.overflow = 'hidden';
-    adminLoad();
-    adminLoadMensalistas();
-    adminLoadDiasBloqueados();
-  } else {
-    document.getElementById('admin-login-error').style.display = 'block';
+function openAdmin(msgErro) {
+  if (adminSession && !msgErro) { mostrarPainelAdmin(); return; }
+  document.getElementById('admin-login-overlay').style.display = 'flex';
+  document.getElementById('admin-pass-input').value = '';
+  const erro = document.getElementById('admin-login-error');
+  erro.textContent = msgErro || '';
+  erro.style.display = msgErro ? 'block' : 'none';
+  setTimeout(() => document.getElementById('admin-email-input').focus(), 50);
+}
+
+async function submitAdminLogin() {
+  const usuario = document.getElementById('admin-email-input').value.trim();
+  const password = document.getElementById('admin-pass-input').value;
+  const erro = document.getElementById('admin-login-error');
+  const btn = document.getElementById('admin-login-btn');
+  if (!usuario || !password) {
+    erro.textContent = 'Informe usuário e senha.';
+    erro.style.display = 'block';
+    return;
+  }
+  btn.disabled = true;
+  btn.textContent = 'Entrando...';
+  erro.style.display = 'none';
+  try {
+    adminSession = await authToken('password', { email: usuarioParaEmail(usuario), password });
+    const ehAdmin = await sb('/rest/v1/rpc/is_admin', { method: 'POST', body: {}, admin: true });
+    if (ehAdmin !== true) {
+      await authLogout();
+      throw new SbError(403, { message: 'Este usuário não tem permissão de administrador.' });
+    }
+    mostrarPainelAdmin();
+  } catch (e) {
+    adminSession = null;
+    erro.textContent = e.status === 400 ? 'Usuário ou senha incorretos.' : e.message;
+    erro.style.display = 'block';
     document.getElementById('admin-pass-input').value = '';
     document.getElementById('admin-pass-input').focus();
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Entrar';
   }
 }
 
@@ -1480,6 +1697,19 @@ function closeAdmin() {
   document.body.style.overflow = '';
 }
 
+async function adminLogout() {
+  await authLogout();
+  closeAdmin();
+  showNotif('Você saiu do painel.');
+}
+
+function adminSessaoExpirada() {
+  if (!adminSession && document.getElementById('admin-overlay').style.display !== 'block') return;
+  adminSession = null;
+  closeAdmin();
+  openAdmin('Sessão expirada. Entre novamente.');
+}
+
 async function adminLoad() {
   const tbody = document.getElementById('admin-tbody');
   tbody.innerHTML = '<tr><td colspan="6" style="padding:2rem; text-align:center; color:var(--text-light);">Carregando...</td></tr>';
@@ -1487,7 +1717,7 @@ async function adminLoad() {
   let filters = '';
   const barber = document.getElementById('admin-filter-barber').value;
   const date = document.getElementById('admin-filter-date').value;
-  const statusF = document.getElementById('admin-filter-status') ? document.getElementById('admin-filter-status').value : '';
+  const statusF = document.getElementById('admin-filter-status').value;
   if (barber) filters += `&barbeiro=eq.${encodeURIComponent(barber)}`;
   if (date) filters += `&data_agendamento=eq.${date}`;
   if (statusF) filters += `&status=eq.${statusF}`;
@@ -1505,17 +1735,17 @@ async function adminLoad() {
   const confirmados = data.filter(d => d.status === 'confirmado').length;
   const cancelados = data.filter(d => d.status === 'cancelado').length;
   document.getElementById('admin-stats').innerHTML = `
-    <div style="background:var(--cream); border-radius:10px; padding:1rem 1.2rem;">
+    <div style="background:var(--bg); border-radius:10px; padding:1rem 1.2rem;">
       <div style="font-size:11px; color:var(--text-muted); font-family:'DM Mono',monospace; letter-spacing:1px; text-transform:uppercase; margin-bottom:4px;">Total Agendamentos</div>
-      <div style="font-family:'Bebas Neue'; font-size:32px; color:var(--green-dark); letter-spacing:1px;">${data.length}</div>
+      <div style="font-family:'Bebas Neue'; font-size:32px; color:var(--primary-dark); letter-spacing:1px;">${data.length}</div>
     </div>
-    <div style="background:var(--cream); border-radius:10px; padding:1rem 1.2rem;">
+    <div style="background:var(--bg); border-radius:10px; padding:1rem 1.2rem;">
       <div style="font-size:11px; color:var(--text-muted); font-family:'DM Mono',monospace; letter-spacing:1px; text-transform:uppercase; margin-bottom:4px;">Receita Prevista</div>
-      <div style="font-family:'Bebas Neue'; font-size:32px; color:var(--green-dark); letter-spacing:1px;">R$ ${total}</div>
+      <div style="font-family:'Bebas Neue'; font-size:32px; color:var(--primary-dark); letter-spacing:1px;">R$ ${total}</div>
     </div>
-    <div style="background:var(--cream); border-radius:10px; padding:1rem 1.2rem;">
+    <div style="background:var(--bg); border-radius:10px; padding:1rem 1.2rem;">
       <div style="font-size:11px; color:var(--text-muted); font-family:'DM Mono',monospace; letter-spacing:1px; text-transform:uppercase; margin-bottom:4px;">Confirmados / Cancelados</div>
-      <div style="font-family:'Bebas Neue'; font-size:32px; color:var(--green-dark); letter-spacing:1px;">${confirmados} / ${cancelados}</div>
+      <div style="font-family:'Bebas Neue'; font-size:32px; color:var(--primary-dark); letter-spacing:1px;">${confirmados} / ${cancelados}</div>
     </div>
   `;
 
@@ -1527,31 +1757,31 @@ async function adminLoad() {
   tbody.innerHTML = data.map(d => {
     const dt = new Date(d.data_agendamento + 'T12:00:00');
     const dateFormatted = dt.toLocaleDateString('pt-BR', { day:'2-digit', month:'2-digit', year:'numeric' });
-    const statusColor = d.status === 'confirmado' ? 'var(--green)' : d.status === 'cancelado' ? '#e55' : '#f90';
-    const statusBg = d.status === 'confirmado' ? 'var(--green-pale)' : d.status === 'cancelado' ? '#fee' : '#fff3e0';
+    const statusColor = d.status === 'confirmado' ? 'var(--primary)' : d.status === 'cancelado' ? '#e55' : '#f90';
+    const statusBg = d.status === 'confirmado' ? 'var(--primary-pale)' : d.status === 'cancelado' ? '#fee' : '#fff3e0';
     return `<tr style="border-bottom:1px solid var(--border);">
       <td style="padding:12px; vertical-align:top;">
-        <div style="font-weight:500;">${d.cliente_nome}</div>
-        <div style="font-size:12px; color:var(--text-muted);">${d.cliente_telefone}</div>
+        <div style="font-weight:500;">${esc(d.cliente_nome)}</div>
+        <div style="font-size:12px; color:var(--text-muted);">${esc(d.cliente_telefone)}</div>
       </td>
       <td style="padding:12px; vertical-align:top;">
-        <div style="font-size:12px; font-family:'DM Mono',monospace; background:var(--green-pale); color:var(--green-dark); padding:3px 8px; border-radius:4px; display:inline-block;">${d.barbeiro.includes('PV') ? 'PV' : 'PH'}</div>
-        <div style="font-size:12px; color:var(--text-muted); margin-top:4px;">${d.barbeiro}</div>
+        <div style="font-size:12px; font-family:'DM Mono',monospace; background:var(--primary-pale); color:var(--primary-dark); padding:3px 8px; border-radius:4px; display:inline-block;">${esc(iniciaisDoBarbeiro(d.barbeiro))}</div>
+        <div style="font-size:12px; color:var(--text-muted); margin-top:4px;">${esc(d.barbeiro)}</div>
       </td>
-      <td style="padding:12px; vertical-align:top; font-size:12px; color:var(--text-muted); max-width:180px;">${d.servicos}</td>
+      <td style="padding:12px; vertical-align:top; font-size:12px; color:var(--text-muted); max-width:180px;">${esc(d.servicos)}</td>
       <td style="padding:12px; vertical-align:top;">
         <div style="font-family:'DM Mono',monospace; font-size:13px;">${dateFormatted}</div>
-        <div style="font-size:12px; color:var(--text-muted);">${d.horario}</div>
+        <div style="font-size:12px; color:var(--text-muted);">${esc(d.horario)}</div>
       </td>
-      <td style="padding:12px; vertical-align:top; font-family:'DM Mono',monospace; font-weight:600; color:var(--green-dark);">R$ ${d.total}</td>
+      <td style="padding:12px; vertical-align:top; font-family:'DM Mono',monospace; font-weight:600; color:var(--primary-dark);">R$ ${esc(d.total)}</td>
       <td style="padding:12px; vertical-align:top;">
         <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
-          <select onchange="adminChangeStatus('${d.id}', this.value, this)" data-prev="${d.status}" style="padding:5px 8px; border-radius:6px; border:1px solid ${statusColor}; background:${statusBg}; color:${statusColor}; font-size:12px; cursor:pointer; font-family:'DM Sans',sans-serif;">
+          <select onchange="adminChangeStatus('${esc(d.id)}', this.value, this)" data-prev="${esc(d.status)}" style="padding:5px 8px; border-radius:6px; border:1px solid ${statusColor}; background:${statusBg}; color:${statusColor}; font-size:12px; cursor:pointer; font-family:'DM Sans',sans-serif;">
             <option value="confirmado" ${d.status==='confirmado'?'selected':''}>Confirmado</option>
             <option value="concluido" ${d.status==='concluido'?'selected':''}>Concluído</option>
             <option value="cancelado" ${d.status==='cancelado'?'selected':''}>Cancelado</option>
           </select>
-          <button onclick="adminDelete('${d.id}')" style="background:#fee;color:#c44;border:1px solid #c44;padding:4px 10px;border-radius:6px;font-size:11px;cursor:pointer;" title="Excluir">🗑</button>
+          <button onclick="adminDelete('${esc(d.id)}')" style="background:#fee;color:#c44;border:1px solid #c44;padding:4px 10px;border-radius:6px;font-size:11px;cursor:pointer;" title="Excluir">🗑</button>
         </div>
       </td>
     </tr>`;
@@ -1564,23 +1794,19 @@ async function adminChangeStatus(id, status, sel) {
     await sbUpdateStatus(id, status);
     showNotif('Status atualizado!');
   } catch(e) {
-    showNotif('Erro ao atualizar status.');
+    showNotif(isHorarioOcupado(e)
+      ? 'Não dá para reativar: esse horário já tem outro agendamento.'
+      : 'Erro ao atualizar status.');
     sel.value = sel.dataset.prev;
   }
   sel.disabled = false;
   adminLoad();
 }
 
-
 async function adminDelete(id) {
   if (!window.confirm('Excluir este agendamento?')) return;
   try {
-    const res = await fetch(`${SB_URL}/rest/v1/agendamentos?id=eq.${id}`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json', 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}` },
-      body: JSON.stringify({ status: 'excluido' })
-    });
-    if (!res.ok) { const e = await res.text(); throw new Error(e); }
+    await sbUpdateStatus(id, 'excluido');
     showNotif('Agendamento excluído!');
     adminLoad();
   } catch(e) {
@@ -1589,16 +1815,11 @@ async function adminDelete(id) {
 }
 
 async function adminDeleteAllCancelados() {
-  const data = await sbFetch('&status=eq.cancelado');
-  if (!data.length) { showNotif('Nenhum cancelado encontrado.'); return; }
-  if (!window.confirm(`Excluir todos os ${data.length} agendamento(s) cancelado(s)?`)) return;
   try {
-    const res = await fetch(`${SB_URL}/rest/v1/agendamentos?status=eq.cancelado`, {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json', 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}` },
-      body: JSON.stringify({ status: 'excluido' })
-    });
-    if (!res.ok) { const e = await res.text(); throw new Error(e); }
+    const data = await sbFetch('&status=eq.cancelado');
+    if (!data.length) { showNotif('Nenhum cancelado encontrado.'); return; }
+    if (!window.confirm(`Excluir todos os ${data.length} agendamento(s) cancelado(s)?`)) return;
+    await sb('/rest/v1/agendamentos?status=eq.cancelado', { method: 'PATCH', body: { status: 'excluido' }, admin: true });
     showNotif(`${data.length} cancelado(s) removido(s)!`);
     adminLoad();
   } catch(e) {
@@ -1608,27 +1829,29 @@ async function adminDeleteAllCancelados() {
 
 // ── MENSALISTAS ──────────────────────────────────────────
 async function adminLoadMensalistas() {
-  const res = await fetch(`${SB_URL}/rest/v1/mensalistas?order=nome.asc&select=*`, {
-    headers: { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}` }
-  });
-  const data = await res.json();
   const el = document.getElementById('mensalistas-tbody');
-  if (!el) return;
+  let data;
+  try {
+    data = await sb('/rest/v1/mensalistas?order=nome.asc&select=*', { admin: true });
+  } catch(e) {
+    el.innerHTML = '<tr><td colspan="5" style="padding:1.5rem; text-align:center; color:red;">Erro ao carregar.</td></tr>';
+    return;
+  }
   if (!data.length) {
     el.innerHTML = '<tr><td colspan="5" style="padding:1.5rem; text-align:center; color:var(--text-light);">Nenhum mensalista cadastrado.</td></tr>';
     return;
   }
   el.innerHTML = data.map(m => `
     <tr style="border-bottom:1px solid var(--border);">
-      <td style="padding:10px 12px; font-weight:500;">${m.nome}</td>
-      <td style="padding:10px 12px; font-size:13px; color:var(--text-muted);">${m.telefone}</td>
+      <td style="padding:10px 12px; font-weight:500;">${esc(m.nome)}</td>
+      <td style="padding:10px 12px; font-size:13px; color:var(--text-muted);">${esc(m.telefone)}</td>
       <td style="padding:10px 12px;">
-        <span style="font-family:'DM Mono',monospace; background:var(--green-pale); color:var(--green-dark); padding:2px 8px; border-radius:4px; font-size:12px;">${m.barbeiro.includes('PV') ? 'PV' : 'PH'}</span>
-        <span style="font-size:12px; color:var(--text-muted); margin-left:6px;">${m.barbeiro}</span>
+        <span style="font-family:'DM Mono',monospace; background:var(--primary-pale); color:var(--primary-dark); padding:2px 8px; border-radius:4px; font-size:12px;">${esc(iniciaisDoBarbeiro(m.barbeiro))}</span>
+        <span style="font-size:12px; color:var(--text-muted); margin-left:6px;">${esc(m.barbeiro)}</span>
       </td>
-      <td style="padding:10px 12px; font-size:12px; color:var(--text-muted);">${m.observacao || '—'}</td>
+      <td style="padding:10px 12px; font-size:12px; color:var(--text-muted);">${esc(m.observacao || '—')}</td>
       <td style="padding:10px 12px;">
-        <button onclick="adminDeleteMensalista('${m.id}')" style="background:#fee;color:#c44;border:1px solid #c44;padding:3px 10px;border-radius:6px;font-size:11px;cursor:pointer;">🗑</button>
+        <button onclick="adminDeleteMensalista('${esc(m.id)}')" style="background:#fee;color:#c44;border:1px solid #c44;padding:3px 10px;border-radius:6px;font-size:11px;cursor:pointer;">🗑</button>
       </td>
     </tr>`).join('');
 }
@@ -1643,69 +1866,70 @@ async function adminSaveMensalista() {
   const horario = document.getElementById('m-horario').value;
   const observacao = [servico, obs].filter(Boolean).join(' — ');
   if (!nome || !telefone || !barbeiro) { showNotif('Preencha nome, telefone e barbeiro.'); return; }
-  await fetch(`${SB_URL}/rest/v1/mensalistas`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}`, 'Prefer': 'return=minimal' },
-    body: JSON.stringify({ nome, telefone, barbeiro, observacao })
-  });
-  if (data && horario) {
-    const startDate = new Date(data + 'T12:00:00');
-    const endDate = new Date(startDate);
-    endDate.setMonth(endDate.getMonth() + 6);
-    const rows = [];
-    const cur = new Date(startDate);
-    while (cur <= endDate) {
-      rows.push({
-        cliente_nome: nome,
-        cliente_telefone: telefone,
-        barbeiro: barbeiro,
-        servicos: servico || 'Mensalista',
-        total: 0,
-        data_agendamento: cur.toISOString().split('T')[0],
-        horario: horario,
-        status: 'confirmado'
-      });
-      cur.setDate(cur.getDate() + 7);
+
+  try {
+    await sb('/rest/v1/mensalistas', { method: 'POST', body: { nome, telefone, barbeiro, observacao }, admin: true, prefer: 'return=minimal' });
+
+    let msg = 'Mensalista cadastrado!';
+    if (data && horario) {
+      // Uma reserva por semana durante 6 meses, pulando dias bloqueados e horários já ocupados
+      const startDate = new Date(data + 'T12:00:00');
+      const endDate = new Date(startDate);
+      endDate.setMonth(endDate.getMonth() + 6);
+      const inicioISO = isoLocal(startDate), fimISO = isoLocal(endDate);
+
+      const [ocupados, bloqueados] = await Promise.all([
+        sb(`/rest/v1/agendamentos?barbeiro=eq.${encodeURIComponent(barbeiro)}&horario=eq.${encodeURIComponent(horario)}&data_agendamento=gte.${inicioISO}&data_agendamento=lte.${fimISO}&status=in.(confirmado,concluido)&select=data_agendamento`, { admin: true }),
+        sb(`/rest/v1/dias_bloqueados?data=gte.${inicioISO}&data=lte.${fimISO}&select=data`, { admin: true }),
+      ]);
+      const pular = new Set([...ocupados.map(o => o.data_agendamento), ...bloqueados.map(b => b.data)]);
+
+      const rows = [];
+      let pulados = 0;
+      for (const cur = new Date(startDate); cur <= endDate; cur.setDate(cur.getDate() + 7)) {
+        const dia = isoLocal(cur);
+        if (pular.has(dia)) { pulados++; continue; }
+        rows.push({
+          cliente_nome: nome,
+          cliente_telefone: telefone,
+          barbeiro,
+          servicos: servico || 'Mensalista',
+          total: 0,
+          data_agendamento: dia,
+          horario,
+          status: 'confirmado'
+        });
+      }
+      if (rows.length) {
+        await sb('/rest/v1/agendamentos', { method: 'POST', body: rows, admin: true, prefer: 'return=minimal' });
+      }
+      msg = `Mensalista cadastrado! ${rows.length} horário(s) reservado(s)` + (pulados ? `, ${pulados} pulado(s) (ocupado ou dia fechado).` : '.');
     }
-    await fetch(`${SB_URL}/rest/v1/agendamentos`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}`, 'Prefer': 'return=minimal' },
-      body: JSON.stringify(rows)
-    });
+
+    ['m-nome', 'm-tel', 'm-servico', 'm-obs', 'm-data', 'm-horario'].forEach(id => document.getElementById(id).value = '');
+    preencherHorariosMensalista();
+    showNotif(msg);
+  } catch(e) {
+    showNotif(isHorarioOcupado(e)
+      ? 'Um dos horários acabou de ser ocupado. Tente de novo.'
+      : 'Erro ao cadastrar: ' + e.message);
   }
-  document.getElementById('m-nome').value = '';
-  document.getElementById('m-tel').value = '';
-  document.getElementById('m-servico').value = '';
-  document.getElementById('m-obs').value = '';
-  document.getElementById('m-data').value = '';
-  document.getElementById('m-horario').value = '';
-  showNotif(data && horario ? 'Mensalista cadastrado e horário bloqueado!' : 'Mensalista cadastrado!');
   adminLoadMensalistas();
+  adminLoad();
 }
 
 async function adminDeleteMensalista(id) {
   if (!window.confirm('Remover mensalista e liberar todos os horários dele na agenda?')) return;
   try {
-    const resGet = await fetch(`${SB_URL}/rest/v1/mensalistas?id=eq.${id}&select=nome,telefone,barbeiro`, {
-      headers: { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}` }
-    });
-    const rows = await resGet.json();
+    const rows = await sb(`/rest/v1/mensalistas?id=eq.${id}&select=nome,telefone,barbeiro`, { admin: true });
     const mens = rows[0];
 
-    const res = await fetch(`${SB_URL}/rest/v1/mensalistas?id=eq.${id}`, {
-      method: 'DELETE',
-      headers: { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}` }
-    });
-    if (!res.ok) { const e = await res.text(); throw new Error(e); }
+    await sb(`/rest/v1/mensalistas?id=eq.${id}`, { method: 'DELETE', admin: true });
 
     if (mens) {
-      await fetch(
-        `${SB_URL}/rest/v1/agendamentos?cliente_nome=eq.${encodeURIComponent(mens.nome)}&cliente_telefone=eq.${encodeURIComponent(mens.telefone)}&barbeiro=eq.${encodeURIComponent(mens.barbeiro)}&status=eq.confirmado`,
-        {
-          method: 'PATCH',
-          headers: { 'Content-Type': 'application/json', 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}` },
-          body: JSON.stringify({ status: 'excluido' })
-        }
+      await sb(
+        `/rest/v1/agendamentos?cliente_nome=eq.${encodeURIComponent(mens.nome)}&cliente_telefone=eq.${encodeURIComponent(mens.telefone)}&barbeiro=eq.${encodeURIComponent(mens.barbeiro)}&status=eq.confirmado`,
+        { method: 'PATCH', body: { status: 'excluido' }, admin: true }
       );
     }
 
@@ -1723,22 +1947,21 @@ let diasBloqueadosCache = null;
 async function getDiasBloqueados() {
   if (diasBloqueadosCache) return diasBloqueadosCache;
   try {
-    const res = await fetch(`${SB_URL}/rest/v1/dias_bloqueados?select=data`, {
-      headers: { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}` }
-    });
-    const data = await res.json();
+    const data = await sb('/rest/v1/dias_bloqueados?select=data');
     diasBloqueadosCache = data.map(d => d.data);
   } catch(e) { diasBloqueadosCache = []; }
   return diasBloqueadosCache;
 }
 
 async function adminLoadDiasBloqueados() {
-  const res = await fetch(`${SB_URL}/rest/v1/dias_bloqueados?order=data.asc&select=*`, {
-    headers: { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}` }
-  });
-  const data = await res.json();
   const el = document.getElementById('dias-tbody');
-  if (!el) return;
+  let data;
+  try {
+    data = await sb('/rest/v1/dias_bloqueados?order=data.asc&select=*', { admin: true });
+  } catch(e) {
+    el.innerHTML = '<tr><td colspan="3" style="padding:1.5rem; text-align:center; color:red;">Erro ao carregar.</td></tr>';
+    return;
+  }
   if (!data.length) {
     el.innerHTML = '<tr><td colspan="3" style="padding:1.5rem; text-align:center; color:var(--text-light);">Nenhum dia bloqueado.</td></tr>';
     return;
@@ -1748,9 +1971,9 @@ async function adminLoadDiasBloqueados() {
     const fmt = dt.toLocaleDateString('pt-BR', { weekday:'long', day:'2-digit', month:'2-digit', year:'numeric' });
     return `<tr style="border-bottom:1px solid var(--border);">
       <td style="padding:10px 12px; font-weight:500; text-transform:capitalize;">${fmt}</td>
-      <td style="padding:10px 12px; font-size:13px; color:var(--text-muted);">${d.motivo || '—'}</td>
+      <td style="padding:10px 12px; font-size:13px; color:var(--text-muted);">${esc(d.motivo || '—')}</td>
       <td style="padding:10px 12px;">
-        <button onclick="adminDeleteDia('${d.id}')" style="background:#fee;color:#c44;border:1px solid #c44;padding:3px 10px;border-radius:6px;font-size:11px;cursor:pointer;">🗑 Desbloquear</button>
+        <button onclick="adminDeleteDia('${esc(d.id)}')" style="background:#fee;color:#c44;border:1px solid #c44;padding:3px 10px;border-radius:6px;font-size:11px;cursor:pointer;">🗑 Desbloquear</button>
       </td>
     </tr>`;
   }).join('');
@@ -1761,27 +1984,26 @@ async function adminBloquearDia() {
   const motivo = document.getElementById('bloquear-motivo').value.trim();
   if (!data) { showNotif('Selecione uma data.'); return; }
   try {
-    await fetch(`${SB_URL}/rest/v1/dias_bloqueados`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}`, 'Prefer': 'return=minimal' },
-      body: JSON.stringify({ data, motivo })
-    });
+    await sb('/rest/v1/dias_bloqueados', { method: 'POST', body: { data, motivo }, admin: true, prefer: 'return=minimal' });
     document.getElementById('bloquear-data').value = '';
     document.getElementById('bloquear-motivo').value = '';
     showNotif('Dia bloqueado com sucesso!');
-    adminLoadDiasBloqueados();
-    diasBloqueadosCache = null;
-  } catch(e) { showNotif('Erro ao bloquear dia.'); }
+  } catch(e) {
+    showNotif(isHorarioOcupado(e) ? 'Esse dia já está bloqueado.' : 'Erro ao bloquear dia.');
+  }
+  diasBloqueadosCache = null;
+  adminLoadDiasBloqueados();
 }
 
 async function adminDeleteDia(id) {
-  await fetch(`${SB_URL}/rest/v1/dias_bloqueados?id=eq.${id}`, {
-    method: 'DELETE',
-    headers: { 'apikey': SB_KEY, 'Authorization': `Bearer ${SB_KEY}` }
-  });
-  showNotif('Dia desbloqueado!');
-  adminLoadDiasBloqueados();
+  try {
+    await sb(`/rest/v1/dias_bloqueados?id=eq.${id}`, { method: 'DELETE', admin: true });
+    showNotif('Dia desbloqueado!');
+  } catch(e) {
+    showNotif('Erro ao desbloquear: ' + e.message);
+  }
   diasBloqueadosCache = null;
+  adminLoadDiasBloqueados();
 }
 
 // Smooth scroll
@@ -1797,16 +2019,20 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 <!-- ADMIN LOGIN -->
 <div id="admin-login-overlay" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.75); z-index:300; align-items:center; justify-content:center;">
   <div style="background:var(--white); border-radius:16px; padding:2.5rem; width:100%; max-width:360px; box-shadow:0 20px 60px rgba(0,0,0,0.3); text-align:center;">
-    <div style="font-family:'Bebas Neue'; font-size:28px; letter-spacing:2px; color:var(--green-dark); margin-bottom:4px;">Painel Admin</div>
-    <div style="font-size:13px; color:var(--text-muted); margin-bottom:1.5rem;">Na Risca Studio</div>
+    <div style="font-family:'Bebas Neue'; font-size:28px; letter-spacing:2px; color:var(--primary-dark); margin-bottom:4px;">Painel Admin</div>
+    <div style="font-size:13px; color:var(--text-muted); margin-bottom:1.5rem;" class="cfg-nome"></div>
+    <div style="text-align:left; margin-bottom:1rem;">
+      <label style="display:block; margin-bottom:6px;">Usuário</label>
+      <input type="text" id="admin-email-input" autocomplete="username" autocapitalize="none" spellcheck="false" placeholder="muniz" onkeydown="if(event.key==='Enter') document.getElementById('admin-pass-input').focus()" style="width:100%;">
+    </div>
     <div style="text-align:left; margin-bottom:1rem;">
       <label style="display:block; margin-bottom:6px;">Senha</label>
-      <input type="password" id="admin-pass-input" placeholder="••••••••" onkeydown="if(event.key==='Enter') submitAdminLogin()" style="width:100%;">
+      <input type="password" id="admin-pass-input" autocomplete="current-password" placeholder="••••••••" onkeydown="if(event.key==='Enter') submitAdminLogin()" style="width:100%;">
     </div>
-    <div id="admin-login-error" style="display:none; color:#e55; font-size:13px; margin-bottom:1rem;">Senha incorreta.</div>
+    <div id="admin-login-error" style="display:none; color:#e55; font-size:13px; margin-bottom:1rem;"></div>
     <div style="display:flex; gap:1rem;">
       <button onclick="closeAdminLogin()" style="flex:1; padding:11px; border-radius:40px; border:1.5px solid var(--border); background:transparent; color:var(--text-muted); cursor:pointer; font-family:'DM Sans',sans-serif; font-size:14px;">Cancelar</button>
-      <button onclick="submitAdminLogin()" style="flex:1; padding:11px; border-radius:40px; border:none; background:var(--green); color:var(--white); cursor:pointer; font-family:'DM Sans',sans-serif; font-size:14px; font-weight:500;">Entrar</button>
+      <button id="admin-login-btn" onclick="submitAdminLogin()" style="flex:1; padding:11px; border-radius:40px; border:none; background:var(--primary); color:var(--white); cursor:pointer; font-family:'DM Sans',sans-serif; font-size:14px; font-weight:500;">Entrar</button>
     </div>
   </div>
 </div>
@@ -1814,7 +2040,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 <!-- ADMIN PANEL -->
 <style>
 .adm-tab { padding:10px 18px; border:none; background:none; color:rgba(255,255,255,0.55); font-family:'DM Sans',sans-serif; font-size:14px; font-weight:500; cursor:pointer; border-bottom:2px solid transparent; transition:all 0.2s; white-space:nowrap; }
-.adm-tab.active { color:#fff; border-bottom-color:#fff; }
+.adm-tab.active { color:#fff; border-bottom-color:var(--gold); }
 .adm-panel { display:none; }
 .adm-panel.active { display:block; }
 </style>
@@ -1822,13 +2048,17 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   <div style="max-width:960px; margin:2rem auto; background:var(--white); border-radius:20px; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,0.3);">
 
     <!-- Header -->
-    <div style="background:var(--green-dark); padding:1.5rem 2rem 0;">
+    <div style="background:var(--primary-dark); padding:1.5rem 2rem 0;">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
         <div>
           <div style="font-family:'Bebas Neue'; font-size:28px; letter-spacing:2px; color:var(--white);">Painel Admin</div>
-          <div style="font-size:12px; color:rgba(255,255,255,0.6); font-family:'DM Mono',monospace; letter-spacing:1px;">Na Risca Studio</div>
+          <div style="font-size:12px; color:rgba(255,255,255,0.6); font-family:'DM Mono',monospace; letter-spacing:1px;" class="cfg-nome"></div>
         </div>
-        <button onclick="closeAdmin()" style="background:rgba(255,255,255,0.15); border:none; color:var(--white); padding:8px 16px; border-radius:8px; cursor:pointer; font-size:13px; font-family:'DM Sans',sans-serif;">✕ Fechar</button>
+        <div style="display:flex; gap:8px; align-items:center;">
+          <span id="admin-user-email" style="font-size:12px; color:rgba(255,255,255,0.6); font-family:'DM Mono',monospace;"></span>
+          <button onclick="adminLogout()" style="background:transparent; border:1px solid rgba(255,255,255,0.3); color:var(--white); padding:8px 16px; border-radius:8px; cursor:pointer; font-size:13px; font-family:'DM Sans',sans-serif;">Sair</button>
+          <button onclick="closeAdmin()" style="background:rgba(255,255,255,0.15); border:none; color:var(--white); padding:8px 16px; border-radius:8px; cursor:pointer; font-size:13px; font-family:'DM Sans',sans-serif;">✕ Fechar</button>
+        </div>
       </div>
       <div style="display:flex; gap:2px;">
         <button class="adm-tab active" id="tab-btn-agend" onclick="switchAdminTab('agend')">📋 Agendamentos</button>
@@ -1840,12 +2070,11 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     <!-- TAB Agendamentos -->
     <div id="adm-panel-agend" class="adm-panel active" style="padding:1.5rem 2rem;">
       <div style="display:flex; gap:1rem; margin-bottom:1.5rem; flex-wrap:wrap;">
-        <select id="admin-filter-barber" onchange="adminLoad()" style="padding:8px 12px; border-radius:8px; border:1.5px solid var(--border); font-size:13px; background:var(--cream); color:var(--text); cursor:pointer; font-family:'DM Sans',sans-serif;">
+        <select id="admin-filter-barber" onchange="adminLoad()" style="padding:8px 12px; border-radius:8px; border:1.5px solid var(--border); font-size:13px; background:var(--bg); color:var(--text); cursor:pointer; font-family:'DM Sans',sans-serif;">
           <option value="">Todos os barbeiros</option>
-          <option value="Pedro Vitor (PV)">Pedro Vitor (PV)</option>
         </select>
-        <input type="date" id="admin-filter-date" onchange="adminLoad()" style="padding:8px 12px; border-radius:8px; border:1.5px solid var(--border); font-size:13px; background:var(--cream); color:var(--text); cursor:pointer;">
-        <select id="admin-filter-status" onchange="adminLoad()" style="padding:8px 12px; border-radius:8px; border:1.5px solid var(--border); font-size:13px; background:var(--cream); color:var(--text); cursor:pointer; font-family:'DM Sans',sans-serif;">
+        <input type="date" id="admin-filter-date" onchange="adminLoad()" style="padding:8px 12px; border-radius:8px; border:1.5px solid var(--border); font-size:13px; background:var(--bg); color:var(--text); cursor:pointer;">
+        <select id="admin-filter-status" onchange="adminLoad()" style="padding:8px 12px; border-radius:8px; border:1.5px solid var(--border); font-size:13px; background:var(--bg); color:var(--text); cursor:pointer; font-family:'DM Sans',sans-serif;">
           <option value="">Todos os status</option>
           <option value="confirmado">Confirmado</option>
           <option value="concluido">Concluído</option>
@@ -1857,7 +2086,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
       <div style="overflow-x:auto;">
         <table style="width:100%; border-collapse:collapse; font-size:13px;">
           <thead>
-            <tr style="background:var(--cream); text-align:left;">
+            <tr style="background:var(--bg); text-align:left;">
               <th style="padding:10px 12px; font-weight:600; color:var(--text-muted); font-family:'DM Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase;">Cliente</th>
               <th style="padding:10px 12px; font-weight:600; color:var(--text-muted); font-family:'DM Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase;">Barbeiro</th>
               <th style="padding:10px 12px; font-weight:600; color:var(--text-muted); font-family:'DM Mono',monospace; font-size:11px; letter-spacing:1px; text-transform:uppercase;">Serviços</th>
@@ -1875,8 +2104,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 
     <!-- TAB Mensalistas -->
     <div id="adm-panel-mens" class="adm-panel" style="padding:1.5rem 2rem;">
-      <div style="background:var(--cream); border-radius:12px; padding:1.5rem; margin-bottom:1.5rem;">
-        <div style="font-weight:600; font-size:15px; margin-bottom:1rem; color:var(--green-dark);">Cadastrar Mensalista</div>
+      <div style="background:var(--bg); border-radius:12px; padding:1.5rem; margin-bottom:1.5rem;">
+        <div style="font-weight:600; font-size:15px; margin-bottom:1rem; color:var(--primary-dark);">Cadastrar Mensalista</div>
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem;">
           <div>
             <label style="font-size:11px; font-family:'DM Mono',monospace; letter-spacing:1px; color:var(--text-muted); text-transform:uppercase;">Nome</label>
@@ -1884,31 +2113,18 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
           </div>
           <div>
             <label style="font-size:11px; font-family:'DM Mono',monospace; letter-spacing:1px; color:var(--text-muted); text-transform:uppercase;">Telefone</label>
-            <input id="m-tel" type="tel" placeholder="(21) 99999-0000" style="width:100%; margin-top:4px; padding:10px 12px; border:1.5px solid var(--border); border-radius:8px; font-size:14px; background:var(--white); font-family:'DM Sans',sans-serif; outline:none;">
+            <input id="m-tel" type="tel" placeholder="(00) 00000-0000" style="width:100%; margin-top:4px; padding:10px 12px; border:1.5px solid var(--border); border-radius:8px; font-size:14px; background:var(--white); font-family:'DM Sans',sans-serif; outline:none;">
           </div>
           <div>
             <label style="font-size:11px; font-family:'DM Mono',monospace; letter-spacing:1px; color:var(--text-muted); text-transform:uppercase;">Barbeiro</label>
             <select id="m-barbeiro" style="width:100%; margin-top:4px; padding:10px 12px; border:1.5px solid var(--border); border-radius:8px; font-size:14px; background:var(--white); font-family:'DM Sans',sans-serif; outline:none;">
               <option value="">Selecione...</option>
-              <option value="Pedro Vitor (PV)">Pedro Vitor (PV)</option>
             </select>
           </div>
           <div>
             <label style="font-size:11px; font-family:'DM Mono',monospace; letter-spacing:1px; color:var(--text-muted); text-transform:uppercase;">Tipo de Corte</label>
             <select id="m-servico" style="width:100%; margin-top:4px; padding:10px 12px; border:1.5px solid var(--border); border-radius:8px; font-size:14px; background:var(--white); font-family:'DM Sans',sans-serif; outline:none;">
               <option value="">Selecione...</option>
-              <option>Corte Simples</option>
-              <option>Corte Disfarçado (Máquina)</option>
-              <option>Corte Tesoura</option>
-              <option>Barba</option>
-              <option>Corte + Barba</option>
-              <option>Cavanhaque</option>
-              <option>Pezinho</option>
-              <option>Pigmentação</option>
-              <option>Reflexo</option>
-              <option>Nevou</option>
-              <option>Colorido</option>
-              <option>Alinhamento de Fios</option>
             </select>
           </div>
           <div>
@@ -1917,35 +2133,20 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
           </div>
           <div>
             <label style="font-size:11px; font-family:'DM Mono',monospace; letter-spacing:1px; color:var(--text-muted); text-transform:uppercase;">Data do Agendamento</label>
-            <input id="m-data" type="date" style="width:100%; margin-top:4px; padding:10px 12px; border:1.5px solid var(--border); border-radius:8px; font-size:14px; background:var(--white); font-family:'DM Sans',sans-serif; outline:none;">
+            <input id="m-data" type="date" onchange="preencherHorariosMensalista()" style="width:100%; margin-top:4px; padding:10px 12px; border:1.5px solid var(--border); border-radius:8px; font-size:14px; background:var(--white); font-family:'DM Sans',sans-serif; outline:none;">
           </div>
           <div>
             <label style="font-size:11px; font-family:'DM Mono',monospace; letter-spacing:1px; color:var(--text-muted); text-transform:uppercase;">Horário</label>
             <select id="m-horario" style="width:100%; margin-top:4px; padding:10px 12px; border:1.5px solid var(--border); border-radius:8px; font-size:14px; background:var(--white); font-family:'DM Sans',sans-serif; outline:none;">
               <option value="">— sem agendamento —</option>
-              <option value="10:00">10:00</option>
-              <option value="10:45">10:45</option>
-              <option value="11:30">11:30</option>
-              <option value="12:15">12:15</option>
-              <option value="13:00">13:00</option>
-              <option value="13:45">13:45</option>
-              <option value="14:30">14:30</option>
-              <option value="15:15">15:15</option>
-              <option value="16:00">16:00</option>
-              <option value="16:45">16:45</option>
-              <option value="17:30">17:30</option>
-              <option value="18:15">18:15</option>
-              <option value="19:00">19:00</option>
-              <option value="19:45">19:45</option>
-              <option value="20:30">20:30</option>
             </select>
           </div>
         </div>
-        <button onclick="adminSaveMensalista()" style="background:var(--green); color:#fff; border:none; padding:10px 24px; border-radius:8px; font-size:14px; font-weight:500; cursor:pointer; font-family:'DM Sans',sans-serif;">+ Cadastrar</button>
+        <button onclick="adminSaveMensalista()" style="background:var(--primary); color:#fff; border:none; padding:10px 24px; border-radius:8px; font-size:14px; font-weight:500; cursor:pointer; font-family:'DM Sans',sans-serif;">+ Cadastrar</button>
       </div>
       <div style="overflow-x:auto;">
         <table style="width:100%; border-collapse:collapse; font-size:13px;">
-          <thead><tr style="background:var(--cream); text-align:left;">
+          <thead><tr style="background:var(--bg); text-align:left;">
             <th style="padding:10px 12px; font-family:'DM Mono',monospace; font-size:11px; color:var(--text-muted); text-transform:uppercase; font-weight:600;">Nome</th>
             <th style="padding:10px 12px; font-family:'DM Mono',monospace; font-size:11px; color:var(--text-muted); text-transform:uppercase; font-weight:600;">Telefone</th>
             <th style="padding:10px 12px; font-family:'DM Mono',monospace; font-size:11px; color:var(--text-muted); text-transform:uppercase; font-weight:600;">Barbeiro</th>
@@ -1961,8 +2162,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 
     <!-- TAB Fechar Dias -->
     <div id="adm-panel-dias" class="adm-panel" style="padding:1.5rem 2rem;">
-      <div style="background:var(--cream); border-radius:12px; padding:1.5rem; margin-bottom:1.5rem;">
-        <div style="font-weight:600; font-size:15px; margin-bottom:1rem; color:var(--green-dark);">Bloquear um Dia</div>
+      <div style="background:var(--bg); border-radius:12px; padding:1.5rem; margin-bottom:1.5rem;">
+        <div style="font-weight:600; font-size:15px; margin-bottom:1rem; color:var(--primary-dark);">Bloquear um Dia</div>
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1rem;">
           <div>
             <label style="font-size:11px; font-family:'DM Mono',monospace; letter-spacing:1px; color:var(--text-muted); text-transform:uppercase;">Data</label>
@@ -1977,7 +2178,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
       </div>
       <div style="overflow-x:auto;">
         <table style="width:100%; border-collapse:collapse; font-size:13px;">
-          <thead><tr style="background:var(--cream); text-align:left;">
+          <thead><tr style="background:var(--bg); text-align:left;">
             <th style="padding:10px 12px; font-family:'DM Mono',monospace; font-size:11px; color:var(--text-muted); text-transform:uppercase; font-weight:600;">Data</th>
             <th style="padding:10px 12px; font-family:'DM Mono',monospace; font-size:11px; color:var(--text-muted); text-transform:uppercase; font-weight:600;">Motivo</th>
             <th style="padding:10px 12px;"></th>
@@ -1993,7 +2194,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 </div>
 
 <!-- Admin trigger (hidden shortcut) -->
-<div id="admin-trigger" onclick="openAdmin()" style="position:fixed; bottom:1.5rem; left:1.5rem; width:40px; height:40px; border-radius:50%; background:var(--green-dark); display:flex; align-items:center; justify-content:center; cursor:pointer; opacity:0.15; transition:opacity 0.3s; z-index:50;" title="Admin">
+<div id="admin-trigger" onclick="openAdmin()" style="position:fixed; bottom:1.5rem; left:1.5rem; width:40px; height:40px; border-radius:50%; background:var(--primary-dark); display:flex; align-items:center; justify-content:center; cursor:pointer; opacity:0.15; transition:opacity 0.3s; z-index:50;" title="Admin">
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
 </div>
 <style>#admin-trigger:hover { opacity:0.9 !important; }</style>
